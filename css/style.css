@@ -1,0 +1,977 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html, body {
+
+  margin:0;
+  padding: 0;
+  background: #000000;
+  color: #ffffff;
+  font-size: clamp(12px, 2vw, 30px);
+  font-family: "Syne", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+h1 {
+  font-size: clamp(20px, 3vw, 60px);
+  margin: 0px;
+  font-weight: 800;
+  line-height: 1em;
+}
+
+h2 {
+  font-size: clamp(15px, 2vw, 30px);
+  font-weight: 800;
+}
+
+h3 {
+  font-size: clamp(8px, 1.5vw, 30px);
+  font-weight: 700;
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+p {
+  font-size: clamp(10px, 2vw, 25px);
+  font-weight: 500;
+}
+
+/* sections*/
+
+section {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+
+  z-index: 1;
+}
+
+.service.sticky .text,
+.service.sticky figure {
+  pointer-events: auto;
+}
+
+/* navigation */
+
+nav.color-change {
+  background-color: #99adc5;
+  transition: background-color 1s ease;
+}
+
+nav {
+  position: fixed;
+  height: 10vh;
+  top: 15px;
+  left: 50px;
+  right: 50px;
+  font-size: 20px;
+  z-index: 2;
+  
+  background-color: transparent;
+  background: linear-gradient(120deg,#42536815, #26426290);
+  backdrop-filter: blur(20px) brightness(0.85) contrast(1.5) saturate(2);
+  box-shadow: 8px 8px 8px rgba(10, 10, 10, 0.15);
+  
+  border-radius: 100px;
+
+  transition: background-color 1s ease;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+}
+
+nav ul li {
+  list-style: none;
+  margin-left: 2vh;
+  margin-right: 4vh;
+}
+
+nav ul li a {
+  color: #ffffff;
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+nav ul li a img {
+  height: 6vh;
+  vertical-align: middle;
+  position: relative;
+}
+
+.nav-link.active {
+  color: #FCDFA7;
+}
+
+/*NAVBAR ONLY HOVER WITH MOUSE*/
+@media (hover: hover) and (pointer: fine) {
+  nav ul li a:hover {
+    color: #FCDFA7;
+    transition: color 0.3s ease;
+  }
+}
+
+/* language bar */
+
+nav ul .language-select {
+  margin-left: auto;
+  margin-right: 20px; /* optional: for some spacing from the edge */
+}
+
+select {
+  background: transparent;
+
+  color: #cdd2d7;
+  border: black;
+  padding: 8px 30px 8px 12px; /* space on the right for the arrow */
+  font-size: 16px;
+  appearance: none; /* remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%23cdd2d7' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 6px;
+  transition: background-color 1s ease;
+}
+
+/* image slider */
+
+.slider {
+  z-index: 1;
+  position: relative;
+}
+
+.slider-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+#imageslider figure {
+  display: flex;
+  width: 500vw; /* 5 images * 100vw each */
+  margin: 0;
+  padding: 0;
+  animation: 20s slider infinite ease-in-out;
+}
+
+#imageslider figure img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+@keyframes slider {
+  0% { transform: translateX(0%); }
+  20% { transform: translateX(0%); }
+  25% { transform: translateX(-20%); }
+  45% { transform: translateX(-20%); }
+  50% { transform: translateX(-40%); }
+  70% { transform: translateX(-40%); }
+  75% { transform: translateX(-60%); }
+  95% { transform: translateX(-60%); }
+  100% { transform: translateX(-80%); }
+}
+/*image slider end*/
+
+/*about section*/
+
+#about {
+  scroll-margin-top: 10vh;
+}
+
+section.about article {
+  position: relative;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+section.about article .about-content {
+  box-sizing: border-box;
+  
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  width: 30vw;
+  height: calc(90vh - 100px);
+
+
+  background: linear-gradient(120deg,#42536815, #26426290);
+  backdrop-filter: blur(20px) brightness(0.85) contrast(1.5) saturate(2);
+
+  box-shadow: 8px 8px 8px rgba(10, 10, 10, 0.15);
+  border-radius: 30px;
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  padding: 30px;
+}
+
+section.about article .about-content .title {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: #FCDFA7;
+  text-align: center;
+}
+
+section.about article .about-content .subtitle {
+  flex: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+
+section.about article .about-content .description {
+  flex: 1;
+  display: flex;
+  font-size: clamp(15px, 1.5vw, 25px);
+  margin: 0 3.125vw 0 3.125vw; /* top, right, bottom, left */
+  align-items: center;
+
+}
+
+#programs figure img {
+  flex: 1;
+  width: 70%;
+  object-fit: cover;
+  align-items: flex-start;
+  opacity: 70%;
+}
+
+/* service section*/
+
+.service.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.service-container {
+
+  height: 400vh;
+  z-index: 0;
+}
+
+#services {
+  flex-direction: column;
+}
+
+section.service article {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: none;
+  overflow: hidden;
+}
+
+section.service figure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  z-index: 1;
+}
+
+section.service figure img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+}
+
+section.service .text {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  width: 30vw;
+  height: calc(90vh - 100px);
+
+  background: linear-gradient(120deg,#42536815, #26426290);
+  backdrop-filter: blur(10px) brightness(0.85) contrast(1.5) saturate(2);
+
+  border-radius: 30px;
+
+  z-index: 2;
+  padding: 3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  color: white;
+}
+
+/* service section overrides */
+
+section.service .text a {
+  font-family: "Space Mono", monospace;
+  font-size: 70%;
+  transition: color 1s;
+}
+
+/* CONTACT ME ONLY HOVER WITH MOUSE*/
+@media (hover: hover) and (pointer: fine) {
+  section.service a:hover {
+    color: #FCDFA7;
+    text-decoration: underline;
+  }
+}
+
+/* contact section*/
+
+section.contact {
+  height: 90vh !important; /* Forces it */
+  background-color: #99adc5;
+  background: linear-gradient(90deg,#99adc5, #596e86);
+  backdrop-filter: brightness(0.85) contrast(1.5) saturate(2);
+}
+
+section.contact article {
+  height: 90vh;
+  width: 100vw;
+  padding-top: 10vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+
+}
+
+section.contact article figure,
+section.contact .contact-content {
+  height: 90vh;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-picture img {
+  align-items: center;
+  justify-content: center;
+  width: 45vw;
+  border-radius: 50px;
+}
+
+section.contact .contact-content {
+  flex-direction: column;
+  align-items: start;
+  height: 30vh;
+}
+
+section.contact .contact-tools {
+  height: 30vh;
+  padding-top: 1vh;
+}
+
+/* contact section email*/
+
+.contact-left{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1vh;
+}
+
+.contact-inputs {
+    width: 30vw;
+    height: 4vh;
+    border-bottom: 1.5px solid #ffffff;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    outline: transparent;
+    padding-left: 10px;
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.contact-left textarea {
+    resize: none;  
+    height: clamp(20px, 10vh, 12vh);
+    padding-top: 10px;
+}
+
+.contact-inputs:focus{
+    border-bottom: 1.5px solid white;
+    border-top: #6F8298;
+    border-left: #6F8298;
+    border-right: #6F8298;
+}
+
+.contact-inputs::placeholder {
+    color: #adb6c0;
+}
+
+.contact-left button {
+    display: flex;
+    align-items: center;
+    padding: 2px 40px;
+    color: #6F8298;
+    gap: 10px;
+    border: none;
+    border-radius: 50px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+
+/*CONTACT LEFT BUTTON ONLY HOVER WITH MOUSE*/
+@media (hover: hover) and (pointer: fine) {
+  .contact-left button:hover {
+    color: #ffffff;
+    background: #FCDFA7;
+  }
+}
+/* contact section overrides */
+
+#contact h1 {
+  color: #FCDFA7;
+  font-size: 150%;
+}
+
+#contact p {
+  font-size: clamp(5px, 1vw, 15px);
+}
+
+#contact a {
+  font-size: clamp(5px, 1vw, 15px);
+  font-weight: 500;
+}
+
+.download-content a {
+  display: inline-block;
+  color: #6F8298;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 10px 20px;
+  margin: 5px 0;
+  transition: 0.3s ease;
+}
+
+
+/*CONTACT DATA BUTTONS ONLY HOVER WITH MOUSE*/
+@media (hover: hover) and (pointer: fine) {
+  .contact-data a:hover {
+    color: #ffffff;
+    background-color: #FCDFA7;
+  }
+}
+
+.contact-left button p {
+  font-weight: 600;
+  font-size: clamp(5px, 10vh, 15px);
+}
+
+.contact-left-title h2 {
+  font-size: clamp(5px, 10vh, 25px);
+  margin-bottom: 0px;
+}
+
+/* Social media icons */
+
+.social-networks {
+  display: flex;
+  gap: 1vw;
+  margin: 1vh 0px;
+}
+
+.social-networks img {
+  display: flex;
+  height: 4vh;
+  align-items: start;
+  justify-content: start;
+  object-fit: cover;
+}
+
+.social-networks img:hover {
+  transform: none;
+}
+
+.social-networks a img {
+  transition: none !important;
+  background: none !important;
+  filter: none !important;
+}
+
+.social-networks a:hover {
+  color: inherit !important;
+  background: none !important;
+}
+
+
+/* 1. MOBILE LAYOUT VERTICAL */
+@media (max-width: 600px) and (orientation: portrait) {
+
+
+    /* NAVBAR */
+
+      nav {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        font-size: 10px; /* smaller font for mobile */
+        padding: 5px 10px;
+    }
+
+    nav ul li {
+        margin: 5px 10px; /* tighter margins */
+    }
+
+    nav ul li a {
+        font-size: clamp(5px, 11px, 25px); /* shrink text */
+        white-space: nowrap; /* keep each link on one line */
+    }
+
+    nav ul li a img {
+        height: 30px; /* smaller logo */
+    }
+
+    nav ul .language-select select {
+        font-size: clamp(5px, 11px, 25px);
+        padding: 4px 20px 4px 8px;
+    }
+  
+
+    /* ABOUT SECTION */
+
+    section.about article .about-content {
+        bottom: 20vh;
+        right: 15vw;
+        width: 70vw;
+        height: 50vh;
+    }
+
+    h3 {
+      font-size: clamp(12px, 1.8vw, 30px);
+      font-weight: 700;
+    }
+
+    section.about article .about-content .description {
+      font-size: clamp(14px, 1vw, 18px);
+      margin: 10px 3.125vw 0 3.125vw; /* top, right, bottom, left */
+    }
+
+    #programs figure img {
+      width: 90%;
+      margin: 10px 0 0 0; /* top, right, bottom, left */
+    }
+
+    /* SERVICE SECTION */
+
+    section.service .text {
+        top: calc(10vh + 20px);
+        right: 10px;
+        width: 50vw;
+        height: 40vh;
+    }
+
+    section.service .text h2 {
+        font-size: clamp(5px, 12px, 30px)
+    }
+
+    section.service .text p {
+        font-size: clamp(5px, 12px, 30px);
+    }
+
+    section.service .text a {
+        font-size: clamp(5px, 10px, 25px);
+    }
+
+    /* CONTACT SECTION */
+
+    section.contact article {
+        flex-direction: column; /* stack vertically */
+        height: 100vh; /* let it grow naturally */
+        padding-top: 50px; /* keep space below navbar */
+      }
+
+    section.contact article figure,
+    section.contact .contact-content {
+        width: 100%; /* full width */
+        height: auto; /* adjust height to content */
+        justify-content: center;
+        text-align: center;
+      }
+
+    .profile-picture img {
+        width: 20vh;
+        height: 20vh;
+        object-fit: cover;
+       border-radius: 50%;
+      }
+
+    section.contact .contact-content {
+        align-items: center;
+      }
+
+    section.contact .contact-data {
+        height: 25vh;
+    }
+
+    .download-content a {
+        margin: 2.5px 0;
+        padding: 5px 12px;
+    }
+
+    section.contact .contact-tools {
+        height: 35vh;
+    }
+
+    .social-networks {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .social-networks img {
+        height: 3vh;
+    }
+
+    .contact-left button {
+        padding: 0px 20px;
+    }
+
+    .contact-left-title h2 {
+        font-size: clamp(10px, 2vh, 30px);
+    }
+
+    #contact h1 {
+        font-size: clamp(10px, 3vh, 30px);
+    }
+
+    #contact p {
+        font-size: clamp(10px, 1.5vw, 15px);
+    }
+
+    #contact a {
+        font-size: clamp(10px, 1.5vw, 15px) ;
+    }
+
+    .contact-inputs {
+        width: 80vw; /* fit smaller screens */
+      }
+
+}
+
+/* 2. MOBILE LAYOUT HORIZONTAL */
+
+@media (max-width: 1022px) and (max-height: 600px) and (orientation: landscape) {
+    /* NAVBAR */
+
+      nav {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        font-size: 10px; /* smaller font for mobile */
+        padding: 2.5px 5px;
+    }
+
+    nav ul li {
+        margin: 5px 10px; /* tighter margins */
+    }
+
+    nav ul li:first-child {
+        margin-left: 1px; /* adjust to your liking */
+        margin-right: 8px; /* keeps spacing from next element */
+    }
+
+    nav ul li a {
+        font-size: clamp(10px, 12px, 25px); /* shrink text */
+        white-space: nowrap; /* keep each link on one line */
+    }
+
+    nav ul li a img {
+        height: 7vh; /* smaller logo */
+    }
+
+    nav ul .language-select select {
+        font-size: clamp(10px, 12px, 24px);
+        padding: 4px 20px 4px 8px;
+    }
+  
+
+    /* ABOUT SECTION */
+
+    section.about article .about-content {
+        bottom: 10px;
+        right: 15px;
+        height: calc(90vh - 30px);
+    }
+
+    section.about article h1 {
+      font-size: clamp(15px, 2vw, 25px);
+    }
+
+    h3 {
+      font-size: clamp(8px, 1.3vw, 15px);
+    }
+
+    section.about article .about-content .description {
+      font-size: clamp(10px, 1.5vw, 15px);
+      margin: 5px 0.5vw 0 0.5vw; /* top, right, bottom, left */
+    }
+
+    #programs figure img {
+      width: 90%;
+      margin: 5px 0 0 0; /* top, right, bottom, left */
+    }
+
+    /* SERVICE SECTION */
+
+    section.service .text {
+        bottom: 10px;
+        right: 15px;
+        height: calc(90vh - 30px);
+    }
+
+    section.service .text p {
+        font-size: clamp(11px, 1vw, 18px);
+    }
+
+    section.service .text a {
+        font-size: clamp(10px, 0.8vw, 15px);
+    }
+
+    /* CONTACT SECTION */
+
+    .profile-picture img {
+      border-radius: 25px;
+      height: 65vh;
+      width: auto;
+    }
+
+    .download-content a {
+        margin: 1px 0;
+        padding: 2.5px 12px;
+    }
+
+    .social-networks img {
+        height: 5vh;
+    }
+
+    .contact-left button {
+        padding: 0px 20px;
+    }
+
+    #contact h1 {
+        font-size: clamp(8px, 1.8vw, 18px);
+    }
+
+    .contact-left-title h2 {
+        font-size: clamp(9px, 1.2vw, 12px);
+        margin-top: 1vh;
+    }
+
+    #contact p {
+        font-size: clamp(6px, 1vw, 12px);
+    }
+
+    #contact a {
+        font-size: clamp(5px, 1vw, 10px);
+    }
+
+    .contact-inputs {
+        font-size: clamp(5px, 1vw, 10px);
+    }
+
+}
+
+/* 3. TABLET LAYOUT VERTICAL */
+
+@media (min-width: 601px) and (max-width: 1023px) and (min-height: 601px) {
+    
+    /* NAVBAR */
+
+      nav {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        font-size: 10px; /* smaller font for mobile */
+        padding: 5px 10px;
+    }
+
+    nav ul li {
+        margin: 5px 10px; /* tighter margins */
+    }
+
+    nav ul li a {
+        font-size: clamp(18px, 22px, 30px); /* shrink text */
+        white-space: nowrap; /* keep each link on one line */
+    }
+
+    nav ul li a img {
+        height: 50px; /* smaller logo */
+    }
+
+    nav ul .language-select select {
+        font-size: clamp(15px, 20px, 25px);
+        padding: 4px 20px 4px 8px;
+    }
+  
+
+    /* ABOUT SECTION */
+
+    section.about article .about-content {
+        bottom: 22.5vh;
+        right: 27.5vw;
+        width: 45vw;
+        height: 45vh;
+    }
+
+    section.about article h1 {
+      font-size: clamp(20px, 3.5vw, 30px);
+    }
+
+    h3 {
+      font-size: clamp(15px, 2vw, 30px);
+      font-weight: 700;
+    }
+
+    section.about article .about-content .description {
+      font-size: clamp(18px, 1.5vw, 25px);
+      margin: 10px 3.125vw 0 3.125vw; /* top, right, bottom, left */
+    }
+
+    #programs figure img {
+      width: 90%;
+      margin: 10px 0 0 0; /* top, right, bottom, left */
+    }
+
+    /* SERVICE SECTION */
+
+    section.service .text {
+        top: calc(10vh + 20px);
+        right: 10px;
+        width: 40vw;
+        height: 35vh;
+    }
+
+    section.service .text p {
+        font-size: clamp(18px, 2vw, 30px);
+    }
+
+    section.service .text a {
+        font-size: clamp(85%, 90%, 100%);
+    }
+
+    /* CONTACT SECTION */
+
+    section.contact article {
+        flex-direction: column; /* stack vertically */
+        height: 100vh; /* let it grow naturally */
+        padding-top: 50px; /* keep space below navbar */
+      }
+
+    section.contact article figure,
+    section.contact .contact-content {
+        width: 100%; /* full width */
+        height: auto; /* adjust height to content */
+        justify-content: center;
+        text-align: center;
+      }
+
+    .profile-picture img {
+        width: 20vh;
+        height: 20vh;
+        object-fit: cover;
+       border-radius: 50%;
+      }
+
+    section.contact .contact-content {
+        align-items: center;
+      }
+
+    section.contact .contact-data {
+        height: 25vh;
+    }
+
+    .download-content a {
+        margin: 4px 0;
+        padding: 8px 18px;
+    }
+
+    section.contact .contact-tools {
+        height: 35vh;
+    }
+
+    .social-networks {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .social-networks img {
+        height: 3.8vh;
+    }
+
+    .contact-left button {
+        padding: 0px 30px;
+    }
+
+    .contact-left-title h2 {
+        font-size: clamp(18px, 3vw, 25px);
+    }
+
+    #contact h1 {
+        font-size: clamp(25px, 3.8vw, 35px);
+    }
+
+    #contact p {
+        font-size: clamp(10px, 1.8vw, 15px);
+    }
+
+    #contact a {
+        font-size: clamp(12px, 2vw, 15px) ;
+    }
+
+    .contact-inputs {
+        width: 80vw; /* fit smaller screens */
+      }
+
+}
