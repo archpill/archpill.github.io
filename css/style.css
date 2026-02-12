@@ -395,7 +395,8 @@ section.contact .contact-content {
 .profile-picture img {
   align-items: center;
   justify-content: center;
-  width: 45vw;
+  width: 40vw;
+  height: auto;
   border-radius: 50px;
 }
 
@@ -474,7 +475,11 @@ section.contact .contact-tools {
 
 #contact h1 {
   color: #FCDFA7;
-  font-size: 150%;
+  font-size: clamp(50%, 110%, 160%);
+}
+
+#contact h2 {
+  font-size: clamp(5px, 1.8vw, 20px);
 }
 
 #contact p {
