@@ -277,3 +277,101 @@ document.addEventListener("DOMContentLoaded", function () {
   // Run once on page load so About is active immediately
   updateActiveLink();
 }); 
+
+
+
+
+
+
+// MODEL BROWSER
+
+const modelBrowserBtn = document.getElementById("modelBrowserBtn");
+const modelBrowser = document.getElementById("modelBrowser");
+const modelSearch = document.getElementById("modelSearch");
+const modelList = document.getElementById("modelList");
+
+/* MANUAL MODEL LIST */
+
+const models = [
+
+{
+name:"Daniela Ruiz-dormitorio",
+file:"models/DanielaRuiz_CuartoDeVera.glb"
+},
+
+{
+name:"Amelia Reyna-pasadizo",
+file:"models/DanielaRuiz_CuartoDeVera.glb"
+},
+
+{
+name:"Pilar Vise mueble-tocador",
+file:"models/DanielaRuiz_CuartoDeVera.glb"
+},
+
+];
+
+/* OPEN BROWSER */
+
+modelBrowserBtn.onclick = (e)=>{
+e.preventDefault();
+modelBrowser.style.display = "block";
+renderList(models);
+};
+
+/* RENDER MODEL LIST */
+
+function renderList(list){
+
+modelList.innerHTML = "";
+
+list.forEach(model=>{
+
+const li = document.createElement("li");
+li.textContent = model.name;
+
+li.onclick = ()=>{
+
+window.location.href =
+`3dExplorer.html?model=${encodeURIComponent(model.file)}`;
+
+};
+
+modelList.appendChild(li);
+
+});
+
+}
+
+/* SEARCH */
+
+modelSearch.addEventListener("input",()=>{
+
+const query = modelSearch.value.toLowerCase();
+
+const filtered = models.filter(m =>
+m.name.toLowerCase().includes(query)
+);
+
+renderList(filtered);
+
+});
+
+const closeBrowser = document.getElementById("closeBrowser");
+
+if(closeBrowser){
+closeBrowser.onclick = ()=>{
+modelBrowser.style.display = "none";
+};
+}
+
+window.addEventListener("click",(e)=>{
+
+if(
+!modelBrowser.contains(e.target) &&
+!modelBrowserBtn.contains(e.target)
+){
+modelBrowser.style.display = "none";
+}
+
+});
