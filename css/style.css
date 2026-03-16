@@ -981,3 +981,69 @@ section.contact .contact-tools {
 
 }
 
+#modelBrowser{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:900px;
+height: 900px;
+max-width:90vw;
+max-height:60vh;
+background:#111;
+border-radius:15px;
+padding:20px;
+z-index:999;
+display:none;
+overflow-y:auto;
+box-sizing:border-box;
+}
+
+
+#modelSearch{
+width:100%;
+padding:10px;
+margin-bottom:10px;
+background:#222;
+border:none;
+color:white;
+border-radius:8px;
+font-family:monospace;
+}
+
+#modelList{
+list-style:none;
+padding:0;
+margin:0;
+}
+
+#modelList li{
+padding:8px;
+cursor:pointer;
+border-bottom:1px solid #333;
+}
+
+#modelList li:hover{
+background:#333;
+}
+
+#browserHeader{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+color:white;
+font-family: monospace;
+}
+
+#closeBrowser{
+background:none;
+border:none;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+#closeBrowser:hover{
+color:#FCDFA7;
+}
