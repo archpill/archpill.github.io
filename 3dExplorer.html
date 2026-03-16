@@ -152,7 +152,10 @@ scene.add(light2);
 
 const loader = new GLTFLoader();
 
-loader.load("./3dmodel.glb",(gltf)=>{
+const params = new URLSearchParams(window.location.search);
+const modelURL = params.get("model");
+
+loader.load(modelURL,(gltf)=>{
 
 const model = gltf.scene;
 scene.add(model);
