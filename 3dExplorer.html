@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>3D Explorer</title>
+
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+background:#ffffff;
+font-family:sans-serif;
+}
+
+#info{
+position:absolute;
+top:10px;
+left:10px;
+color:white;
+background:rgba(0,0,0,0.6);
+padding:12px;
+border-radius:8px;
+font-size:13px;
+}
+
+#toggleContainer{
+margin-top:8px;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.switch{
+position:relative;
+display:inline-block;
+width:38px;
+height:20px;
+}
+
+.switch input{
+opacity:0;
+width:0;
+height:0;
+}
+
+.slider{
+position:absolute;
+cursor:pointer;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background-color:#ccc;
+transition:.3s;
+border-radius:20px;
+}
+
+.slider:before{
+position:absolute;
+content:"";
+height:16px;
+width:16px;
+left:2px;
+bottom:2px;
+background:white;
+transition:.3s;
+border-radius:50%;
+}
+
+input:checked + .slider{
+background-color:#4c9aff;
+}
+
+input:checked + .slider:before{
+transform:translateX(18px);
+}
+
+</style>
+
+<script type="importmap">
+{
+"imports": {
+"three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+"three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}
+}
+</script>
+
+</head>
+
+<body>
+
+<div id="info">
+
+<b>MOUSE</b><br>
+Left click = rotate<br>
+Scroll = zoom<br>
+Right click = pan<br><br>
+
+<b>MOVEMENT</b><br>
+
+Q/E = down/up<br>
+W/↑ = forward<br>
+S/↓ = backward<br>
+A/← = left<br>
+D/→ = right
+
+<div id="toggleContainer">
+<span>Dark mode</span>
+
+<label class="switch">
+<input type="checkbox" id="bgToggle">
+<span class="slider"></span>
+</label>
+
+</div>
+</div>
+
+<script type="module">
+
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+
+const camera = new THREE.PerspectiveCamera(
+60,
+window.innerWidth/window.innerHeight,
+0.1,
+1000
+);
+
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(window.innerWidth,window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera,renderer.domElement);
+controls.enableDamping = true;
+
+const light1 = new THREE.HemisphereLight(0xffffff,0x444444,1.8);
+scene.add(light1);
+
+const light2 = new THREE.DirectionalLight(0xffffff,1);
+light2.position.set(5,10,7);
+scene.add(light2);
+
+const loader = new GLTFLoader();
+
+loader.load("./3dmodel.glb",(gltf)=>{
+
+const model = gltf.scene;
+scene.add(model);
+
+const box = new THREE.Box3().setFromObject(model);
+const center = box.getCenter(new THREE.Vector3());
+model.position.sub(center);
+
+const size = box.getSize(new THREE.Vector3()).length();
+const distance = size * 1.5;
+
+camera.position.set(distance,distance,distance);
+camera.lookAt(0,0,0);
+
+controls.target.set(0,0,0);
+controls.update();
+
+console.log("MODEL LOADED");
+
+});
+
+/* DARK MODE */
+
+const toggle = document.getElementById("bgToggle");
+
+toggle.addEventListener("change",()=>{
+
+if(toggle.checked){
+scene.background = new THREE.Color(0x222222);
+document.body.style.background="#222222";
+}else{
+scene.background = new THREE.Color(0xffffff);
+document.body.style.background="#ffffff";
+}
+
+});
+
+/* FLY MOVEMENT */
+
+const keys = {};
+
+document.addEventListener("keydown",(e)=>{
+keys[e.key.toLowerCase()] = true;
+});
+
+document.addEventListener("keyup",(e)=>{
+keys[e.key.toLowerCase()] = false;
+});
+
+function animate(){
+
+requestAnimationFrame(animate);
+
+const speed = 0.05;
+
+const forward = new THREE.Vector3();
+camera.getWorldDirection(forward);
+
+const right = new THREE.Vector3();
+right.crossVectors(forward,camera.up).normalize();
+
+const up = new THREE.Vector3().copy(camera.up);
+
+/* forward/back */
+
+if(keys["w"] || keys["arrowup"]){
+camera.position.addScaledVector(forward,speed);
+controls.target.addScaledVector(forward,speed);
+}
+
+if(keys["s"] || keys["arrowdown"]){
+camera.position.addScaledVector(forward,-speed);
+controls.target.addScaledVector(forward,-speed);
+}
+
+/* left/right */
+
+if(keys["d"] || keys["arrowright"]){
+camera.position.addScaledVector(right,speed);
+controls.target.addScaledVector(right,speed);
+}
+
+if(keys["a"] || keys["arrowleft"]){
+camera.position.addScaledVector(right,-speed);
+controls.target.addScaledVector(right,-speed);
+}
+
+/* up/down */
+
+if(keys["e"]){
+camera.position.addScaledVector(up,speed);
+controls.target.addScaledVector(up,speed);
+}
+
+if(keys["q"]){
+camera.position.addScaledVector(up,-speed);
+controls.target.addScaledVector(up,-speed);
+}
+
+controls.update();
+
+renderer.render(scene,camera);
+
+}
+
+animate();
+
+window.addEventListener("resize",()=>{
+
+camera.aspect = window.innerWidth/window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth,window.innerHeight);
+
+});
+
+</script>
+
+</body>
+</html>
