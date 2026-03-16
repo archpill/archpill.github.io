@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="description" content="Architectural portfolio of Ignacio Delgado. BIM, ArchViz, MEP and detailing services.">
     <title>Archpill</title>
-    <link rel="Icon" href="img/favicon.ico" type="image/x-icon"
+    <link rel="Icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,10 +14,23 @@
 
 <body>
     
+    <div id="modelBrowser">
+
+    <div id="browserHeader">
+    <span>3d Explorer</span>
+    <button id="closeBrowser">✕</button>
+    </div>
+
+    <input type="text" id="modelSearch" placeholder="Search model...">
+
+    <ul id="modelList"></ul>
+
+    </div>
+        
         <nav>
 
             <ul>
-                <li><a href="#about"><img src="img/logo.png" alt="My Logo"></a></li>
+                <li><a href="#" id="modelBrowserBtn"><img src="img/logo.png" alt="My Logo"></a></li>
                 <li><a id="navAbout" class="nav-link" href="#about">Home</a></li>
                 <li><a id="navServices" class="nav-link" href="#services">Services</a></li>
                 <li><a id="navContact" class="nav-link" href="#contact">Contact</a></li>
@@ -177,7 +190,6 @@
         <script src="main.js"></script>
 </body>
 </html>
-
 
 
 
