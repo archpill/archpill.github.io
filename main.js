@@ -305,7 +305,7 @@ file:"models/DanielaRuiz_CuartoDeVera.glb"
 },
 
 {
-name:"Pilar Vise mueble-tocador",
+name:"Pilar Vise-tocador",
 file:"models/DanielaRuiz_CuartoDeVera.glb"
 },
 
