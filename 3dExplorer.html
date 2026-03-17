@@ -18,13 +18,14 @@ font-family:sans-serif;
 
 #info{
 position:absolute;
-top:10px;
+top:50px; /* moved down to avoid home button */
 left:10px;
 color:white;
 background:rgba(0,0,0,0.6);
 padding:12px;
 border-radius:8px;
 font-size:13px;
+z-index:900;
 }
 
 #toggleContainer{
@@ -79,6 +80,29 @@ input:checked + .slider:before{
 transform:translateX(18px);
 }
 
+/* HOME BUTTON */
+#homeBtn{
+position:absolute;
+top:10px;
+left:10px;
+z-index:1000; /* above info box */
+background:rgba(0,0,0,0.6);
+padding:6px 10px;
+border-radius:6px;
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+text-decoration:none;
+color:white;
+font-weight:bold;
+font-family:sans-serif;
+display:flex;
+align-items:center;
+gap:4px;
+}
+
+#homeBtn:hover{
+background:rgb(0, 0, 0);
+}
+
 </style>
 
 <script type="importmap">
@@ -93,6 +117,9 @@ transform:translateX(18px);
 </head>
 
 <body>
+
+<!-- HOME BUTTON -->
+<a href="index.html" id="homeBtn">◀ Back to homepage</a>
 
 <div id="info">
 
