@@ -295,18 +295,18 @@ const modelList = document.getElementById("modelList");
 const models = [
 
 {
-name:"Daniela Ruiz-dormitorio",
-file:"models/DanielaRuiz_CuartoDeVera.glb"
+name:"DR_Dormitorio",
+file:"models/DR_Dormitorio.glb"
 },
 
 {
-name:"Amelia Reyna-pasadizo",
-file:"models/DanielaRuiz_CuartoDeVera.glb"
+name:"AR_Pasadizo",
+file:"models/DR_Dormitorio.glb"
 },
 
 {
-name:"Pilar Vise-tocador",
-file:"models/DanielaRuiz_CuartoDeVera.glb"
+name:"PV_Tocador",
+file:"models/DR_Dormitorio.glb"
 },
 
 ];
