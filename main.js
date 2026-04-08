@@ -300,13 +300,18 @@ file:"models/DR_Dormitorio.glb"
 },
 
 {
+name:"AR_Minibar",
+file:"models/AR_Minibar.glb"
+},
+
+{
 name:"AR_Pasadizo",
-file:"models/DR_Dormitorio.glb"
+file:"models/AR_Pasadizo.glb"
 },
 
 {
 name:"PV_Tocador",
-file:"models/DR_Dormitorio.glb"
+file:"models/PV_Tocador.glb"
 },
 
 ];
