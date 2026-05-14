@@ -2,191 +2,361 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Architectural portfolio of Ignacio Delgado. BIM, ArchViz, MEP and detailing services.">
-    <title>Archpill</title>
+    <meta name="description" content="Acompañamos proyectos editoriales en su definición, estructura y desarrollo, integrando contenido, forma y propósito con una mirada técnica y sostenible.">
+    <title>Huella Contenidos</title>
     <link rel="Icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-    
-    <div id="modelBrowser">
 
-    <div id="browserHeader">
-    <span>3d Explorer</span>
-    <button id="closeBrowser">✕</button>
-    </div>
+        <header class="navbar">
+            <div class="nav-inner">
+                <a href="#inicio" class="logo">
+                    <img src="img/logo.svg" alt="huella logo">
+                </a>
 
-    <input type="text" id="modelSearch" placeholder="Search model...">
+                <div class="nav-actions">
 
-    <ul id="modelList"></ul>
+                    <button class="menu-toggle" aria-label="Open menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
 
-    </div>
-        
-        <nav>
+                </div>
+            </div>
+        </header>
 
+        <nav class="side-menu">
+            <button class="menu-close" aria-label="Close menu">✕</button>
             <ul>
-                <li><a href="#" id="modelBrowserBtn"><img src="img/logo.png" alt="My Logo"></a></li>
-                <li><a id="navAbout" class="nav-link" href="#about">Home</a></li>
-                <li><a id="navServices" class="nav-link" href="#services">Services</a></li>
-                <li><a id="navContact" class="nav-link" href="#contact">Contact</a></li>
-                <li class="language-select"><select>
-                    <option value="en">EN</option>
-                    <option value="es">ES</option>
-                </select></li>
+                <li><a href="#inicio"><strong>Inicio</strong></a></li>
+                <li><a href="#quehacemos">Qué hacemos</a></li>
+                <li><a href="#comopensamos">Cómo pensamos</a></li>
+                <li><a href="#quehacemosposible">Qué hacemos posible</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
 
-        <section id="about" class="about">
-            <article>
 
-                <!-- image slider -->
-                <div id="slider" class="slider">
-                    <div id="imageslider" class="slider-container">
+
+
+
+        <div class="menu-overlay"></div>
+
+
+
+
+
+        <section id="inicio" class="inicio">
+                <article>
+
+                    <div class="text">
+                        <h1 id="inicio_title">Dirección editorial con <span class="highlight">criterio estratégico.</span></h1>
+                        <p id="inicio_description">Acompañamos proyectos editoriales en su definición, estructura y desarrollo, integrando contenido, forma y propósito con una mirada técnica y sostenible.</p>
+                        <button class="contact-btn contact-btn--menu">Conversar sobre el proyecto</button>
+                    </div>
+
+                    <div class="image">
                         <figure>
-                        <img src="img/render 01.webp" alt="Building Render">
-                        <img src="img/render 02.webp" alt="House Render">
-                        <img src="img/render 03.webp" alt="Bedroom Render">
-                        <img src="img/render 04.webp" alt="Hallway Render">
-                        <img src="img/render 01.webp" alt="Building Render">
+                            <img src="img/MuestraInicio.webp" alt="MuestraInicio" width="200">
                         </figure>
                     </div>
-                </div>
-                <!-- image slider -->
 
-                <div class="about-content">
-                    <div class="title">
-                        <h1>Ignacio<br>Delgado</h1>
-                    </div>
-                    <div class="subtitle">
-                        <h3 id="subtitle1">Architect's Portfolio</h3>
-                    </div>
-                    <div class="description">
-                        <b id="par1">Hello, I am a visual and technical representation designer with a main focus in BIM-based software.</b>
-                    </div>
-                    <div class="programs">
-                        <div id="programs">
-                            <figure>
-                            <img src="img/programs.png" alt="">
+                </article>
+        </section>
+
+
+
+        <section id="quehacemos" class="quehacemos">
+                <article>
+
+                    <div class="text">
+                        <h2 id="quehacemos_title">Qué hacemos</h2>
+                        <p id="quehacemos_description"><strong>Consultoría editorial</strong><br>Diagnóstico, estructuración y dirección de proyectos editoriales que requieren claridad conceptual, coherencia interna y viabilidad técnica.</p>
+                        <div class="sub_image">
+                            <figure> 
+                                <img src="img/Quehacemos_icons.webp" alt="Quehacemos_icons" width="200">
                             </figure>
                         </div>
                     </div>
-                </div>
-            </article>
 
+                    <div class="image">
+                        <figure>
+                            <img src="img/Collage.webp" alt="Collage" width="200">
+                        </figure>
+                    </div>
+
+                </article>
         </section>
 
-        <section id="services" class="service-container">
-            <section class="service service-3d sticky">
 
+
+        <section id="comopensamos" class="comopensamos">
                 <article>
-                    <figure>
-                        <img src="img/3dModels.webp" alt="3d Model" width="200">
-                    </figure>
 
                     <div class="text">
-                        <h2 id="services_modeling_title">MODELING</h2>
-                        <p id="services_modeling_description">Architectural 3d modeling based on plans or on-site measurements. I use a wide range of industry-standard software to deliver detailed models.</p>
-                        <a id="services_modeling_contact" href="#contact">Contact me for more information.</a>
+                        <h2 id="comopensamos_title">Cómo pensamos</h2>
+                        <p id="comopensamos_description"><strong>Investigación y pensamiento editorial</strong><br>Desarrollamos y compartimos conocimiento aplicado al sector editorial, orientado a mejorar prácticas, anticipar tendencias y aportar a la formación de criterios.</p>
+                        <div class="specification"> <p><strong><em>* Haga click en las categorías para explorar el contenido.</strong></em></p> </div>
                     </div>
-                </article>
 
-            </section>
+                    <div class="pdfs">
 
-            <section class="service service-render sticky">
+                            <a href="#" class="pdf-icon" data-category="autor"> 
+                            <img src="img/LOGO_COPYRIGHT.svg" alt="Derecho de autor">
+                            <div class="pdf-text">
+                                <h3>Derecho de autor</h3>
+                                <p>Uso, límites y decisiones en contextos editoriales contemporáneos.</p>
+                            </div>
+                            </a>
 
-                <article>
-                <figure>
-                    <img src="img/RenderTransition.webp" alt="Render transition to 3d model" width="200">
-                    </figure>
-                    <div class="text">
-                        <h2 id="services_render_title">ARCHVIZ</h2>
-                        <p id="services_render_description">Bring your architectural ideas to life with realistic renderings. You can choose the look and feel from camera angles to materials. I specialize in both interior and exterior visualizations.</p>
-                        <a id="services_render_contact" href="#contact">Contact me for more information.</a>
+                            <a href="#" class="pdf-icon" data-category="carbono">
+                            <img src="img/LOGO_HUELLADECARBONO.svg" alt="Huella de carbono">
+                            <div class="pdf-text">                            
+                                <h3>Huella de carbono</h3>
+                                <p>Impacto ambiental en la producción editorial y modelos sostenibles.</p>
+                            </div>
+                            </a>
+
+                            <a href="#" class="pdf-icon" data-category="tecnologia"> 
+                            <img src="img/LOGO_TECNOLOGIAEDITORIAL.svg" alt="Tecnología editorial">
+                            <div class="pdf-text">                           
+                                <h3>Tecnología editorial</h3>
+                                <p>Transformaciones en la producción, circulación y consumo de contenidos.</p>
+                            </div>
+                            </a>
+
                     </div>
+
                 </article>
-
-            </section>
-
-            <section class="service service-mep sticky">
-
-                <article>
-                <figure>
-                    <img src="img/MEP.webp" alt="MEP system routing" width="200">
-                    </figure>
-                    <div class="text">
-                        <h2>MEP</h2>
-                        <p id="services_mep_description">Mechanical, electrical, and plumbing systems modeled in Autodesk Revit, based on architectural drawings and ready for scheduling and quantity takeoff.</p>
-                        <a id="services_mep_contact" href="#contact">Contact me for more information.</a>
-                    </div>
-                </article>
-
-            </section>
-
-            <section class="service service-detail sticky">
-
-                <article>
-                <figure>
-                    <img src="img/Details.webp" alt="Architectural detail plans" width="200">
-                    </figure>
-                    <div class="text">
-                        <h2 id="services_details_title">DETAILING</h2>
-                        <p id="services_details_description">Construction-ready documentation of architectural elements and components.</p>
-                        <a id="services_details_contact" href="#contact">Contact me for more information.</a>
-                    </div>
-                </article>
-
-            </section>
         </section>
 
-        <section id="contact" class="contact">
-            <article>
-                <figure class="profile-picture">
-                    <img src="img/ProfilePicture.webp" alt="Ignacio Delgado Profile Picture">
-                </figure>
 
-                <div class="contact-content">
-                    <div class="contact-data">
-                        <h1> Ignacio <br> Delgado</h1>
-                        <p id="contact_description">Bachelor of Architecture from <br> Universidad de Lima.</p>
-                        <div class="social-networks">
-                            <a href="https://www.instagram.com/archpill/" target="_blank">
-                                <img src="img/InstagramLogo.png" alt="Instagram Icon">
-                            </a>
-                            <a href="https://www.linkedin.com/in/ignacio-delgado-b66bb219a/" target="_blank">
-                                <img src="img/LinkedInLogo.png" alt="LinkedIn Icon">
-                            </a>
-                        </div>
-                        <div class="download-content">
-                            <a id="contact_cv" href="https://drive.google.com/file/d/1QMvNviJ8yWpUM3eVjz7Fx7KUgaL3fkpQ/view?usp=drive_link" target="_blank">Download CV</a>
-                            <br>
-                            <a id="contact_dossier" href="https://drive.google.com/file/d/12A3cQqpq6sU9uau0mVuE59PVUtL7NmC2/view?usp=drive_link" target="_blank">Download Projects Dossier</a>
+
+
+        <section id="quehacemosposible" class="quehacemosposible">
+                <article>
+                    <div class="text">
+                        <h2 id="quehacemosposible_title">Qué hacemos posible</h2>
+                        <p id="quehacemosposible_description"><strong>Soluciones editoriales</strong><br>Articulamos alianzas y herramientas que permiten llevar los proyectos a su fase de producción y circulación.</p>
+                        <div class="sub_image">
+                            <figure> 
+                                <img src="img/Quehacemosposible_icons.webp" alt="Quehacemosposible_icons" width="200">
+                            </figure>
                         </div>
                     </div>
 
-                    <div class="contact-tools">
-                                <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
-                                    <div class="contact-left-title">
+                    <div class="image">
+                        <figure>
+                            <img src="img/Huelladecarbono.webp" alt="Huella de carbono" width="200">
+                        </figure>
+                    </div>
 
-                                        <h2 id="contact_email_title">Contact Me</h2>
+                </article>
+        </section>
+
+
+
+
+        <section id="proyectos" class="proyectos">
+                <article>
+
+                    <div class="text">
+                        <h2 id="proyectos_title">Proyectos</h2>
+                    </div>
+
+                    <div class="proyectos-carousel">
+
+                        <button class="carousel-btn prev" aria-label="Anterior">‹</button>
+                        
+                        <div class="carousel-viewport">
+                            <div class="carousel-track">
+
+                                <div class="proyecto-card">
+
+                                    <div class="cardtext">
+                                        <h1 id="proyecto01_title">01</h1>
+                                        <p id="proyecto01"><strong>Reestructuración editorial de publicaciones académicas e institucionales</strong><br>Intervención en publicaciones científicas e informes técnicos con problemas de coherencia, continuidad editorial y definición de criterios.<br><strong>Intervención:</strong><br>Definición de arquitectura editorial, criterios de evaluación, lineamientos para autores y rediseño integral de contenidos, asegurando consistencia, calidad y adecuación a estándares institucionales.</p>
                                     </div>
-                                    <input type="hidden" name="access_key" value="77ea78ff-f073-4a43-bc3b-4c7bc73c2e92">
-                                    <input id="contact_email_name" type="text" name="name" placeholder="Your Name" class="contact-inputs" required>
-                                    <input id="contact_email_email" type="email" name="email" placeholder="Your Email" class="contact-inputs" required>
-                                    <textarea id="contact_email_message" name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
-                                    <button type="submit"> <p id="contact_email_send">Send</p> </button>
-                                </form>
-                    </div>
-                </div>
 
-            </article>    
-           
+                                    <div class="cardimage">
+                                        <img src="img/PROYECTO1.svg" alt="Card_image_01">
+                                    </div>
+
+                                </div>
+
+
+                                <div class="proyecto-card">
+
+                                    <div class="cardtext">
+                                        <h1 id="proyecto02_title">02</h1>
+                                        <p id="proyecto02"><strong>Desarrollo de contenidos educativos</strong><br>Diseño y estructuración de materiales escolares alineados con marcos curriculares y objetivos pedagógicos.<br><strong>Intervención:</strong><br>Construcción de arquitectura de contenidos, jerarquías, secuencias didácticas y articulación entre texto, recursos visuales y enfoque metodológico.</p>
+                                    </div>
+
+                                    <div class="cardimage">
+                                        <img src="img/PROYECTO2.svg" alt="Card_image_02">
+                                    </div>
+
+                                </div>
+
+
+                                <div class="proyecto-card">
+
+                                    <div class="cardtext">
+                                        <h1 id="proyecto03_title">03</h1>
+                                        <p id="proyecto03"><strong>Transformación narrativa para producción en audio</strong><br>Evaluación y adaptación de obras literarias para su desarrollo como audiolibros.<br><strong>Intervención:</strong><br>Análisis estructural de la obra, identificación de arcos narrativos y diseño de guión adaptado al formato sonoro, asegurando coherencia y eficacia en la experiencia auditiva.</p>
+                                    </div>
+
+                                    <div class="cardimage">
+                                        <img src="img/PROYECTO3.svg" alt="Card_image_03">
+                                    </div>
+
+                                </div>
+
+
+                                <div class="proyecto-card">
+
+                                    <div class="cardtext">
+                                        <h1 id="proyecto04_title">04</h1>
+                                        <p id="proyecto04"><strong>Adecuación editorial de artículos científicos</strong><br>Acompañamiento en la preparación de artículos académicos para su evaluación en revistas especializadas.<br><strong>Intervención:</strong><br>Definición de estructura, elaboración de plantillas de desarrollo, alineación con estándares internacionales (PRISMA, CARE, STROBE, CONSORT) y adecuación a requisitos editoriales para fortalecer la calidad y viabilidad del manuscrito.</p>
+                                    </div>
+
+                                    <div class="cardimage">
+                                        <img src="img/PROYECTO4.svg" alt="Card_image_04">
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <button class="carousel-btn next" aria-label="Siguiente">›</button>
+                        
+                    </div>
+
+                </article>
         </section>
-        
+
+
+
+
+
+        <section id="contacto" class="contacto">
+                <article>
+                    <div class="text">
+                        <h1 id="contacto_title">¿Tienes un proyecto editorial en desarrollo?</h1>
+                        <p id="contacto_description">Podemos ayudarte a definirlo, estructurarlo y llevarlo a una forma publicable.</p>
+                        <button class="contact-btn contact-btn--menu">Conversar sobre el proyecto</button>
+                    </div>
+                </article>
+
+
+
+                <footer class="site-footer">
+                    <div class="footer-top">
+
+                        <div class="footer-col footer-contact">
+                            <h2><strong>Consultoría editorial, investigación y desarrollo de soluciones para el sector editorial.</strong></h2>
+                            <p>
+                                <a href="mailto:proyectos@huella-contenidos.com">
+                                    proyectos@huella-contenidos.com
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="footer-col footer-social">
+
+
+                            <div class="social-icons">
+
+                                <a href="https://www.instagram.com/huella_contenidos_sac/" 
+                                class="social-icon" 
+                                target="_blank" 
+                                rel="noopener noreferrer">
+                                    <img src="img/InstagramLogo.webp" alt="Instagram">
+                                </a>
+
+                                <a href="https://web.facebook.com/p/Huella-contenidos-SAC-100083639798987/?_rdc=1&_rdr#" 
+                                class="social-icon" 
+                                target="_blank" 
+                                rel="noopener noreferrer">
+                                    <img src="img/FacebookLogo.webp" alt="Facebook">
+                                </a>
+
+                                <a href="https://www.linkedin.com/company/huella-contenidos-sac/" 
+                                class="social-icon" 
+                                target="_blank" 
+                                rel="noopener noreferrer">
+                                    <img src="img/LinkedInLogo.webp" alt="LinkedIn">
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="footer-bottom">
+                        <p>
+                            © Huella Contenidos S.A.C. 2026. | Todos los derechos reservados.
+                        </p>
+                    </div>
+                </footer>
+        </section>
+
+
+
+
+
+        <div class="contact-modal">
+            <div class="contact-overlay"></div>
+
+            <div class="contact-box">
+                <button class="contact-close">✕</button>
+
+                <h2>Contacto</h2>
+
+                <form id="contact-form">
+                    <input type="hidden" name="access_key" value="a121b776-e349-4da2-bb5a-84c26d9628f0">
+
+                    <input type="text" name="name" placeholder="Nombre" required>
+
+                    <input type="email" name="email" placeholder="E-mail" required>
+
+                    <textarea name="message" placeholder="Mensaje" required></textarea>
+
+                    <button type="submit">Enviar</button>
+
+                    <p id="form-result"></p>
+                </form>
+                
+            </div>
+        </div>
+
+
+        <div class="pdf-modal">
+            <div class="pdf-overlay"></div>
+
+            <div class="pdf-box">
+                <button class="pdf-close">✕</button>
+
+                <h2 class="pdf-title">Documentos</h2>
+
+                <div class="pdf-list">
+                    <!-- JS will inject links here -->
+                </div>
+            </div>
+        </div>
+
+
         <script src="main.js"></script>
 </body>
 </html>
