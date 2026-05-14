@@ -1,1508 +1,1049 @@
-/* =========================
-   RESET / BASE
-========================= */
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    font-family: 'Montserrat', sans-serif;
-    height: 100%;
+  box-sizing: border-box;
 }
 
 body {
-    overflow-x: hidden;
-    background: #e7e7e8;
+  overflow-x: hidden;
 }
 
-
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: transparent;
-    z-index: 1000;
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-.nav-inner {
-    height: 100%;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    width: 100%;
+html, body {
+
+  margin:0;
+  padding: 0;
+  background: #000000;
+  color: #ffffff;
+  font-size: clamp(12px, 2vw, 30px);
+  font-family: "Syne", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
-.logo img {
-    width: 10vw;
-    height: auto;
-    display: block;
+h1 {
+  font-size: clamp(20px, 3vw, 60px);
+  margin: 0px;
+  font-weight: 800;
+  line-height: 1em;
 }
 
-.nav-actions {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
+h2 {
+  font-size: clamp(15px, 2vw, 30px);
+  font-weight: 800;
 }
 
-
-/* =========================
-   HAMBURGER BUTTON
-========================= */
-
-.menu-toggle {
-    width: clamp(24px, 2vw, 32px);
-    height: clamp(18px, 2.5vh, 24px);
-    background: none;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    z-index: 1100;
+h3 {
+  font-size: clamp(8px, 1.5vw, 30px);
+  font-weight: 700;
 }
 
-.menu-toggle span {
-    height: 4px;
-    width: 100%;
-    background: #003449;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    transform-origin: center;
+a {
+  color: #ffffff;
+  text-decoration: none;
 }
 
-.menu-toggle.open span:nth-child(1) {
-    transform: translateY(10.5px) rotate(45deg);
+p {
+  font-size: clamp(10px, 2vw, 25px);
+  font-weight: 500;
 }
 
-.menu-toggle.open span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.open span:nth-child(3) {
-    transform: translateY(-10.5px) rotate(-45deg);
-}
-
-
-/* =========================
-   SIDE MENU
-========================= */
-
-.side-menu {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 280px;
-    height: 100vh;
-    background: #d0d8df;
-    transform: translateX(100%);
-    transition: transform 0.35s ease;
-    z-index: 1050;
-    padding-top: 120px;
-}
-
-.side-menu.open {
-    transform: translateX(0);
-}
-
-.side-menu ul {
-    list-style: none;
-    padding: 0 32px;
-}
-
-.side-menu li {
-    margin-bottom: 24px;
-}
-
-.side-menu a {
-    color: #003449;
-    text-decoration: none;
-    font-size: 1.2rem;
-}
-
-.side-menu a:hover {
-    opacity: 0.7;
-}
-
-.menu-close {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    background: none;
-    border: none;
-    color: #003449;
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-
-/* =========================
-   MENU OVERLAY
-========================= */
-
-.menu-overlay {
-    position: fixed;
-    inset: 0;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 1040;
-}
-
-.menu-overlay.open {
-    opacity: 1;
-    pointer-events: all;
-}
-
-
-/* =========================
-   CONTACT BUTTON
-========================= */
-
-.contact-btn {
-    background: #bcc7d0;
-    color: #003449;
-    border: none;
-    padding: 20px 20px;
-    border-radius: 20px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s ease, color 0.3s ease;
-}
-
-.contact-btn:hover {
-    background: #003449;
-    color: white;
-}
-
-.contact-btn--menu {
-    width: 100%;
-    margin-top: 20px;
-    text-align: center;
-}
-
-
-/* =========================
-   CONTACT MODAL
-========================= */
-
-#form-result {
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #003449;
-    min-height: 20px;
-}
-
-
-.contact-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 2000;
-    display: none;
-}
-
-.contact-modal.open {
-    display: block;
-}
-
-.contact-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(77, 87, 91, 0.6);
-    backdrop-filter: blur(4px);
-}
-
-.contact-box {
-    position: relative;
-    width: 90%;
-    max-width: 500px;
-    margin: 10vh auto;
-    background: #bcc7d0;
-    padding: 32px;
-    color: #003449;
-    border-radius: 12px;
-    z-index: 1;
-}
-
-.contact-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: none;
-    border: none;
-    color: #003449;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.contact-box h2 {
-    margin-bottom: 16px;
-}
-
-.contact-box form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.contact-box input,
-.contact-box textarea {
-    background: #d0d8df;
-    border: 1px solid #d0d8df;
-    color: #003449;
-    padding: 10px;
-    border-radius: 6px;
-    font-family: inherit;
-}
-
-.contact-box textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.contact-box button[type="submit"] {
-    background: #003449;
-    border: none;
-    color: white;
-    padding: 12px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.contact-box button[type="submit"]:hover {
-    opacity: 0.9;
-}
-
-
-/* =========================
-   SECTIONS
-========================= */
+/* sections*/
 
 section {
-    min-height: 100vh;
-    width: 100%;
-    background: #e7e7e8;
-    display: flex;
-    align-items: center;
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+
+  z-index: 1;
 }
 
-section article {
-    width: 100%;
-    margin: 0;
-    display: flex;
-    align-items: flex-start;
-    padding: 0px 5vw 0px 15vw;
+.service.sticky .text,
+.service.sticky figure {
+  pointer-events: auto;
 }
 
-/* =========================
-   TEXT BLOCK
-========================= */
+/* navigation */
 
-.text {
-    flex: 1;
-    max-width: 550px;
-    color: #003449;
-    margin-right: 25px;
+nav.color-change {
+  background-color: #99adc5;
+  transition: background-color 1s ease;
 }
 
-.text h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    line-height: 1.2;
+nav {
+  position: fixed;
+  height: 10vh;
+  top: 15px;
+  left: 50px;
+  right: 50px;
+  font-size: 20px;
+  z-index: 2;
+  
+  background-color: transparent;
+  background: linear-gradient(120deg,#42536815, #26426290);
+  backdrop-filter: blur(20px) brightness(0.85) contrast(1.5) saturate(2);
+  box-shadow: 8px 8px 8px rgba(10, 10, 10, 0.15);
+  
+  border-radius: 100px;
+
+  transition: background-color 1s ease;
 }
 
-.text h2 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.text p {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    max-width: 520px;
-}
-
-
-.highlight {
-    background: linear-gradient(transparent 0%,#d0d8df 7%);
-    border-radius: 4px;
-    padding: 0 4px;
-}
-
-
-/* =========================
-   SUB_IMAGE BLOCK
-========================= */
-
-.sub_image {
-    padding-top: 30px;
-}
-
-.sub_image figure {
-    padding: 15px 30px 15px 30px;
-    border-radius: 25px;
-    background-color: #d0d8df;
-}
-
-.sub_image img {
-    width: 25vw;
-    height: auto;
+nav ul {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 
 }
 
-
-/* =========================
-   IMAGE BLOCK
-========================= */
-
-.image {
-    flex: 1;
-    justify-content: center;
-    display: flex;
+nav ul li {
+  list-style: none;
+  margin-left: 2vh;
+  margin-right: 4vh;
 }
 
-.image figure {
-    max-width: 450px;
+nav ul li a {
+  color: #ffffff;
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.image img {
-    width: 35vw;
-    height: auto;
-    display: block;
-    object-fit: contain;
+nav ul li a img {
+  height: 6vh;
+  vertical-align: middle;
+  position: relative;
 }
 
-
-
-
-
-
-/* =========================
-   SPECIFICATION BLOCK
-========================= */
-
-.specification {
-    margin-top: 2rem;
-
+.nav-link.active {
+  color: #FCDFA7;
 }
 
-.specification p {
-    font-size: 1rem;
-    padding: 5px 5px 5px 5px;
-    border-top: 1px solid #003449;
+/*NAVBAR ONLY HOVER WITH MOUSE*/
+@media (hover: hover) and (pointer: fine) {
+  nav ul li a:hover {
+    color: #FCDFA7;
+    transition: color 0.3s ease;
+  }
 }
 
+/* language bar */
 
-
-
-
-/* =========================
-   PDF LIST (COMO PENSAMOS)
-========================= */
-
-.pdfs {
-    display: flex;
-    width: 35vw;
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 30px;
+nav ul .language-select {
+  margin-left: auto;
+  margin-right: 20px; /* optional: for some spacing from the edge */
 }
 
-/* clickable row */
-.pdf-icon {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+select {
+  background: transparent;
 
-    padding: 20px;
-    border-radius: 20px;
-    background: #bcc7d0;
-
-    text-decoration: none;
-    color: #003449;
-
-    transition: transform 0.2s ease, background 0.3s ease;
+  color: #cdd2d7;
+  border: black;
+  padding: 8px 30px 8px 12px; /* space on the right for the arrow */
+  font-size: 16px;
+  appearance: none; /* remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%23cdd2d7' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 6px;
+  transition: background-color 1s ease;
 }
 
-/* icon */
-.pdf-icon img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    flex-shrink: 0;
+/* image slider */
 
-    /* THIS replaces invert */
-    filter: brightness(0) saturate(100%) invert(16%) sepia(18%) saturate(1200%) hue-rotate(165deg);
+.slider {
+  z-index: 1;
+  position: relative;
 }
 
-/* text */
-.pdf-text {
-    display: flex;
-    flex-direction: column;
+.slider-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
 }
 
-.pdf-text h3 {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
+#imageslider figure {
+  display: flex;
+  width: 500vw; /* 5 images * 100vw each */
+  margin: 0;
+  padding: 0;
+  animation: 20s slider infinite ease-in-out;
 }
 
-.pdf-text p {
-    font-size: 0.95rem;
-    line-height: 1.4;
-    opacity: 0.8;
+#imageslider figure img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
 }
 
-/* hover */
-.pdf-icon:hover {
-    transform: translateX(5px);
-    background: #003449;
-    color: white;
+@keyframes slider {
+  0% { transform: translateX(0%); }
+  20% { transform: translateX(0%); }
+  25% { transform: translateX(-20%); }
+  45% { transform: translateX(-20%); }
+  50% { transform: translateX(-40%); }
+  70% { transform: translateX(-40%); }
+  75% { transform: translateX(-60%); }
+  95% { transform: translateX(-60%); }
+  100% { transform: translateX(-80%); }
+}
+/*image slider end*/
+
+/*about section*/
+
+#about {
+  scroll-margin-top: 10vh;
 }
 
-/* make text fully white on hover */
-.pdf-icon:hover h3,
-.pdf-icon:hover p {
-    color: white;
-    opacity: 1;
+section.about article {
+  position: relative;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-/* make SVG white properly */
-.pdf-icon:hover img {
-    filter: brightness(0) invert(1);
+section.about article .about-content {
+  box-sizing: border-box;
+  
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  width: 30vw;
+  height: calc(90vh - 100px);
+
+
+  background: linear-gradient(120deg,#42536815, #26426290);
+  backdrop-filter: blur(20px) brightness(0.85) contrast(1.5) saturate(2);
+
+  box-shadow: 8px 8px 8px rgba(10, 10, 10, 0.15);
+  border-radius: 30px;
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  padding: 30px;
 }
 
-
-
-
-
-/* =========================
-   PDF MODAL
-========================= */
-
-.pdf-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 2100;
-    display: none;
+section.about article .about-content .title {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: #FCDFA7;
+  text-align: center;
 }
 
-.pdf-modal.open {
-    display: block;
-}
-
-.pdf-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(77, 87, 91, 0.6);
-    backdrop-filter: blur(4px);
-}
-
-.pdf-box {
-    position: relative;
-    width: 90%;
-    max-width: 500px;
-    margin: 20px auto;
-    background: #bcc7d0;
-    padding: 32px;
-    color: #003449;
-    border-radius: 12px;
-    z-index: 1;
-}
-
-.contact-box,
-.pdf-box {
-    max-height: 85vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.pdf-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: none;
-    border: none;
-    color: #003449;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.pdf-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.pdf-list a {
-    text-decoration: none;
-    background: #d0d8df;
-    padding: 12px;
-    border-radius: 8px;
-    color: #003449;
-    transition: 0.2s ease;
-}
-
-.pdf-list a:hover {
-    background: #003449;
-    color: white;
+section.about article .about-content .subtitle {
+  flex: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 
+section.about article .about-content .description {
+  flex: 1;
+  display: flex;
+  font-size: clamp(15px, 1.5vw, 25px);
+  margin: 0 3.125vw 0 3.125vw; /* top, right, bottom, left */
+  align-items: center;
 
-
-
-
-
-/* =========================
-   CONTACT SECTION LAYOUT
-========================= */
-
-.contacto {
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
 }
 
-.contacto article {
-    padding: 0px 5vw 30px 5vw;
-    margin-top: 100px;
-    justify-content: center;
+#programs figure img {
+  flex: 1;
+  width: 70%;
+  object-fit: cover;
+  align-items: flex-start;
+  opacity: 70%;
 }
 
+/* service section*/
 
-/* =========================
-   FOOTER
-========================= */
-
-.site-footer {
-    width: 100%;
-    background: #bcc7d0;
-    color: #003449;
-    padding: 64px 15vw 32px;
+.service.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 
-.footer-col {
-    font-size: 0.9rem;
-    line-height: 1.6;
+.service-container {
+
+  height: 400vh;
+  z-index: 0;
 }
 
-.site-footer a {
-    color: #003449;
-    text-decoration: none;
+#services {
+  flex-direction: column;
 }
 
-.site-footer a:hover {
+section.service article {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: none;
+  overflow: hidden;
+}
+
+section.service figure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  z-index: 1;
+}
+
+section.service figure img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+}
+
+section.service .text {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  width: 30vw;
+  height: calc(90vh - 100px);
+
+  background: linear-gradient(120deg,#42536815, #26426290);
+  backdrop-filter: blur(10px) brightness(0.85) contrast(1.5) saturate(2);
+
+  border-radius: 30px;
+
+  z-index: 2;
+  padding: 3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  color: white;
+}
+
+/* service section overrides */
+
+section.service .text a {
+  font-family: "Space Mono", monospace;
+  font-size: 70%;
+  transition: color 1s;
+}
+
+/* CONTACT ME ONLY HOVER WITH MOUSE*/
+@media (hover: hover) and (pointer: fine) {
+  section.service a:hover {
+    color: #FCDFA7;
     text-decoration: underline;
+  }
 }
 
-.footer-bottom {
-    border-top: 1px solid rgba(0,0,0,0.2);
-    padding-top: 20px;
-    text-align: center;
-    font-size: 0.8rem;
+/* contact section*/
+
+section.contact {
+  height: 90vh !important; /* Forces it */
+  background-color: #99adc5;
+  background: linear-gradient(90deg,#99adc5, #596e86);
+  backdrop-filter: brightness(0.85) contrast(1.5) saturate(2);
 }
 
-/* =========================
-   FOOTER SOCIAL
-========================= */
+section.contact article {
+  height: 90vh;
+  width: 100vw;
+  padding-top: 10vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
 
-.footer-top {
-    max-width: 1200px;
-    margin: 0 auto 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
 }
 
-
-.footer-contact {
-    flex: 1;
+section.contact article figure,
+section.contact .contact-content {
+  height: 90vh;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.footer-social {
+.profile-picture img {
+  align-items: center;
+  justify-content: center;
+  width: 40vw;
+  height: auto;
+  border-radius: 50px;
+}
+
+section.contact .contact-content {
+  flex-direction: column;
+  align-items: start;
+  height: 30vh;
+}
+
+section.contact .contact-tools {
+  height: 30vh;
+  padding-top: 1vh;
+}
+
+/* contact section email*/
+
+.contact-left{
     display: flex;
     flex-direction: column;
-    flex: 0 0 auto;
     align-items: start;
+    gap: 1vh;
 }
 
-
-.social-icons {
-    display: flex;
-    padding: 0px 10vw 0px;
-    gap: 30px;
+.contact-inputs {
+    width: 30vw;
+    height: 4vh;
+    border-bottom: 1.5px solid #ffffff;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    outline: transparent;
+    padding-left: 10px;
+    color: #ffffff;
+    background-color: transparent;
 }
 
-.social-icons img {
-    width: 50px;
-    height: auto;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+.contact-left textarea {
+    resize: none;  
+    height: clamp(20px, 10vh, 12vh);
+    padding-top: 10px;
 }
 
-.social-icons img:hover {
-    transform: scale(1.1);
-    opacity: 0.8;
+.contact-inputs:focus{
+    border-bottom: 1.5px solid white;
+    border-top: #6F8298;
+    border-left: #6F8298;
+    border-right: #6F8298;
 }
 
-
-
-
-
-
-/* =========================
-   PROYECTOS SECTION LAYOUT
-========================= */
-
-.proyectos article {
-    flex-direction: column;
-    align-items: flex-start;
+.contact-inputs::placeholder {
+    color: #adb6c0;
 }
 
-/* =========================
-   PROYECTOS CAROUSEL
-========================= */
-
-.proyectos-carousel {
-    position: relative;
-    width: 90%;
-    padding: 0 70px;
-}
-
-.carousel-viewport {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 10px;
-
+.contact-left button {
     display: flex;
     align-items: center;
-}
-
-.carousel-track {
-    position: relative;
-    width: 100%;
-    min-height: 500px;
-
-    display: flex;
-    align-items: center;
-}
-
-.proyecto-card {
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 40px 30px;
-    gap: 20px;
-
-    opacity: 0;
-    pointer-events: none;
-
-
-}
-
-.proyecto-card.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-/* text grows naturally */
-.cardtext {
-    flex: 1 1 500px;
-    max-width: 700px;
-    color: #003449;
-}
-
-.cardtext h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.cardtext p {
-    font-size: 1rem;
-    line-height: 1.7;
-}
-
-/* image right */
-/* image takes only what it needs */
-.cardimage {
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: center;
-}
-
-.cardimage img {
-    width: clamp(100px, 15vw, 200px);
-    height: auto;
-    object-fit: contain;
-}
-
-/* arrows */
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #bcc7d0;
+    padding: 2px 40px;
+    color: #6F8298;
+    gap: 10px;
     border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    font-size: 28px;
+    border-radius: 50px;
+    background: #ffffff;
     cursor: pointer;
-    color: #003449;
-    z-index: 10;
-    transition: background 0.3s ease;
-}
-
-.carousel-btn:hover {
-    background: #003449;
-    color: white;
-}
-
-.carousel-btn.prev {
-    left: 0;
-}
-
-.carousel-btn.next {
-    right: 0;
+    transition: 0.3s ease;
 }
 
 
+/*CONTACT LEFT BUTTON ONLY HOVER WITH MOUSE*/
+@media (hover: hover) and (pointer: fine) {
+  .contact-left button:hover {
+    color: #ffffff;
+    background: #FCDFA7;
+  }
+}
+/* contact section overrides */
+
+#contact h1 {
+  color: #FCDFA7;
+  font-size: clamp(50%, 110%, 160%);
+}
+
+#contact h2 {
+  font-size: clamp(10px, 1.8vw, 20px);
+}
+
+#contact p {
+  font-size: clamp(5px, 1vw, 15px);
+}
+
+#contact a {
+  font-size: clamp(5px, 1vw, 15px);
+  font-weight: 500;
+}
+
+.download-content a {
+  display: inline-block;
+  color: #6F8298;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 10px 20px;
+  margin: 5px 0;
+  transition: 0.3s ease;
+}
 
 
+/*CONTACT DATA BUTTONS ONLY HOVER WITH MOUSE*/
+@media (hover: hover) and (pointer: fine) {
+  .contact-data a:hover {
+    color: #ffffff;
+    background-color: #FCDFA7;
+  }
+}
+
+.contact-left button p {
+  font-weight: 600;
+  font-size: clamp(5px, 10vh, 15px);
+}
+
+.contact-left-title h2 {
+  font-size: clamp(5px, 10vh, 25px);
+  margin-bottom: 0px;
+}
+
+/* Social media icons */
+
+.social-networks {
+  display: flex;
+  gap: 1vw;
+  margin: 1vh 0px;
+}
+
+.social-networks img {
+  display: flex;
+  height: 4vh;
+  align-items: start;
+  justify-content: start;
+  object-fit: cover;
+}
+
+.social-networks img:hover {
+  transform: none;
+}
+
+.social-networks a img {
+  transition: none !important;
+  background: none !important;
+  filter: none !important;
+}
+
+.social-networks a:hover {
+  color: inherit !important;
+  background: none !important;
+}
 
 
-/* ==================================================
-   MOBILE LANDSCAPE
-================================================== */
-
-@media (max-width: 900px) and (orientation: landscape) {
+/* 1. MOBILE LAYOUT VERTICAL */
+@media (max-width: 600px) and (orientation: portrait) {
 
 
-    html,
-    body {
-        overscroll-behavior: none;
-        touch-action: none;
+    /* NAVBAR */
+
+      nav {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        font-size: 10px; /* smaller font for mobile */
+        padding: 5px 10px;
     }
 
-    .contact-box,
-    .pdf-box {
-        touch-action: auto;
-        overflow-y: auto;
+    nav ul li {
+        margin: 5px 10px; /* tighter margins */
     }
 
-
-
-    /* =========================
-       NAVBAR
-    ========================= */
-
-    .navbar {
-        height: 56px;
+    nav ul li a {
+        font-size: clamp(5px, 11px, 25px); /* shrink text */
+        white-space: nowrap; /* keep each link on one line */
     }
 
-    .logo img {
-        width: 80px;
+    nav ul li a img {
+        height: 30px; /* smaller logo */
     }
 
-    /* =========================
-       GLOBAL LAYOUT
-    ========================= */
+    nav ul .language-select select {
+        font-size: clamp(5px, 11px, 25px);
+        padding: 4px 20px 4px 8px;
+    }
+  
 
-    section {
-        min-height: 90vh;
+    /* ABOUT SECTION */
+
+    section.about article .about-content {
+        bottom: 20vh;
+        right: 15vw;
+        width: 70vw;
+        height: 50vh;
     }
 
-    section article {
-        padding: 50px 4vw 20px 15vw;
-        align-items: center;
+    h3 {
+      font-size: clamp(12px, 1.8vw, 30px);
+      font-weight: 700;
     }
 
-    /* =========================
-       TEXT
-    ========================= */
-
-    .text {
-        max-width: 380px;
-        margin-right: 16px;
+    section.about article .about-content .description {
+      font-size: clamp(14px, 1vw, 18px);
+      margin: 10px 3.125vw 0 3.125vw; /* top, right, bottom, left */
     }
 
-    .text h1 {
-        font-size: 1.5rem;
-        line-height: 1.08;
-        margin-bottom: 10px;
+    #programs figure img {
+      width: 90%;
+      margin: 10px 0 0 0; /* top, right, bottom, left */
     }
 
-    .text h2 {
-        font-size: 1rem;
-        line-height: 1.08;
-        margin-bottom: 10px;
+    /* SERVICE SECTION */
+
+    section.service .text {
+        top: calc(10vh + 20px);
+        right: 10px;
+        width: 50vw;
+        height: 40vh;
     }
 
-    .text p {
-        font-size: 0.65rem;
-        line-height: 1.45;
+    section.service .text h2 {
+        font-size: clamp(5px, 12px, 30px)
     }
 
-    /* =========================
-       BUTTONS
-    ========================= */
-
-    .contact-btn {
-        font-size: 1rem;
-        padding: 12px 14px;
-        border-radius: 14px;
+    section.service .text p {
+        font-size: clamp(5px, 12px, 30px);
     }
 
-    .contact-btn--menu {
-        margin-top: 14px;
+    section.service .text a {
+        font-size: clamp(5px, 10px, 25px);
     }
 
-    /* =========================
-       MAIN IMAGE
-    ========================= */
+    /* CONTACT SECTION */
 
-    .image img {
-        width: 30vw;
-    }
+    section.contact article {
+        flex-direction: column; /* stack vertically */
+        height: 100vh; /* let it grow naturally */
+        padding-top: 50px; /* keep space below navbar */
+      }
 
-    /* =========================
-       SUB IMAGE
-    ========================= */
-
-    .sub_image {
-        padding-top: 16px;
-    }
-
-    .sub_image figure {
-        padding: 8px 14px;
-        border-radius: 18px;
-    }
-
-    .sub_image img {
-        width: 30vw;
-    }
-
-    /* =========================
-       PDF SECTION
-    ========================= */
-
-    .pdfs {
-        width: 31vw;
-        gap: 6px;
-        margin-top: 6px;
-    }
-
-    .pdf-icon {
-        padding: 10px;
-        gap: 10px;
-        border-radius: 14px;
-    }
-
-    .pdf-icon img {
-        width: 30px;
-        height: 30px;
-    }
-
-    .pdf-text h3 {
-        font-size: 0.70rem;
-        margin-bottom: 2px;
-    }
-
-    .pdf-text p {
-        font-size: 0.65rem;
-        line-height: 1.25;
-    }
-
-    .pdf-box {
-    margin: 2vh auto;
-    }
-
-    .pdf-box h2 {
-        font-size: 0.75rem;
-    }
-
-    .pdf-list a {
-        font-size: 0.35rem;
-        padding: 5px;
-    }
-
-
-    .pdf-list {
-    gap: 5px;
-    }
-
-    /* =========================
-       SPECIFICATION
-    ========================= */
-
-    .specification {
-        margin-top: 16px;
-    }
-
-    .specification p {
-        font-size: 0.6rem;
-        line-height: 1.3;
-    }
-
-    /* =========================
-       SIDE MENU
-    ========================= */
-
-    .side-menu {
-        width: 260px;
-        padding-top: 80px;
-    }
-
-    .side-menu li {
-        margin-bottom: 14px;
-    }
-
-    .side-menu a {
-        font-size: 1rem;
-    }
-
-    /* =========================
-       PROYECTOS
-    ========================= */
-
-
-    .proyectos h2 {
-        margin-bottom: 0px;
-    }
-
-    .proyectos-carousel {
-        width: 100%;
-        padding: 0 30px;
-    }
-
-    .carousel-track {
-        min-height: 200px;
-    }
-
-    .proyecto-card {
-        padding: 10px;
-        gap: 16px;
-    }
-
-    .cardtext {
-        max-width: 520px;
-    }
-
-    .cardtext h1 {
-        font-size: 1.5rem;
-        margin-bottom: 6px;
-    }
-
-    .cardtext p {
-        font-size: 0.4rem;
-        line-height: 1.4;
-    }
-
-    .cardimage img {
-        width: 10vw;
-    }
-
-    .carousel-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 16px;
-    }
-
-    /* =========================
-    CONTACT SECTION
-    ========================= */
-
-    .contacto {
-        height: 80vh;
-
-        display: flex;
-        flex-direction: column;
-
-        justify-content: space-between;
-
-        overflow: hidden;
-    }
-
-
-    .contacto h1 {
-        font-size: 1.2rem;
-    }
-
-    .contacto article {
-        flex: 1;
-
-        margin-top: 20px;
-
-        display: flex;
-        align-items: center;
+    section.contact article figure,
+    section.contact .contact-content {
+        width: 100%; /* full width */
+        height: auto; /* adjust height to content */
         justify-content: center;
+        text-align: center;
+      }
 
-        min-height: 0;
-    }
+    .profile-picture img {
+        width: 20vh;
+        height: 20vh;
+        object-fit: cover;
+       border-radius: 50%;
+      }
 
-
-    .contacto .text {
-        max-width: 500px;
-    }
-
-
-    .contact-box {
-        height: 75vh;
-        margin: 20px auto;
-        background: #bcc7d0;
-        padding: 20px;
-        color: #003449;
-        border-radius: 12px;
-        z-index: 1;
-    }
-
-    .contact-box h2 {
-    font-size: 1.2rem;
-    }
-
-    .contact-box form {
-    gap: 5px;
-    }
-
-    .contact-box textarea {
-    min-height: 50px;
-    }
-
-
-        /* =========================
-        FOOTER
-        ========================= */
-
-        .site-footer {
-            padding: 20px 8vw 30px 8vw;
-            flex-shrink: 0;
-        }
-
-        .footer-col {
-            font-size: 0.5rem;
-        }
-
-        .footer-bottom {
-            font-size: 0.5rem;
-            padding-top: 5px;
-        }
-
-        .social-icons {
-            gap: 10px;
-            padding: 0;
-        }
-
-        .social-icons img {
-            width: 25px;
-        }
-
-    }
-
-
-
-/* ==================================================
-   MOBILE PORTRAIT
-================================================== */
-
-@media (max-width: 600px) {
-
-
-
-    html,
-    body {
-        overscroll-behavior: none;
-        touch-action: none;
-    }
-
-    .contact-box,
-    .pdf-box {
-        touch-action: auto;
-        overflow-y: auto;
-    }
-
-    /* =========================
-       GLOBAL LAYOUT
-    ========================= */
-
-    section {
-        min-height: 90vh;
-        padding: 0;
-
-        display: flex;
+    section.contact .contact-content {
         align-items: center;
+      }
 
-        overflow: hidden;
+    section.contact .contact-data {
+        height: 25vh;
     }
 
-    section article {
-        height: 100%;
+    .download-content a {
+        margin: 2.5px 0;
+        padding: 5px 12px;
+    }
 
-        display: flex;
-        flex-direction: column;
+    section.contact .contact-tools {
+        height: 35vh;
+    }
 
-        justify-content: center;
+    .social-networks {
         align-items: center;
-
-        gap: 14px;
-
-        padding:
-            80px   /* top navbar space */
-            7vw
-            24px;
-    }
-
-    .inicio article,
-    .quehacemos article,
-    .quehacemosposible article {
-        flex-direction: column-reverse;
-        gap: 40px;
-    }
-
-    .comopensamos article {
-        gap: 50px;
-    }
-
-    /* =========================
-    TRUE VERTICAL CENTERING
-    ========================= */
-
-    section article {
-        justify-content: center;
-        align-items: center;
-
-        padding-top: 80px;
-        padding-bottom: 40px;
-    }
-
-    /* remove leftover horizontal-layout spacing */
-    .text {
-        margin: 0;
-    }
-
-    /* make image blocks stop reserving weird space */
-    .image,
-    .pdfs,
-    .sub_image {
-        flex: 0 0 auto;
-    }
-
-    /* prevent sections from sticking to the top */
-    .text,
-    .image,
-    .pdfs {
         justify-content: center;
     }
 
-
-    /* =========================
-       NAVBAR
-    ========================= */
-
-    .navbar {
-        height: 64px;
+    .social-networks img {
+        height: 3vh;
     }
 
-    .nav-inner {
-        padding: 0 16px;
+    .contact-left button {
+        padding: 0px 20px;
     }
 
-    .logo img {
-        width: 120px;
+    .contact-left-title h2 {
+        font-size: clamp(10px, 2vh, 30px);
     }
 
-    .menu-toggle {
-        width: 24px;
-        height: 18px;
+    #contact h1 {
+        font-size: clamp(10px, 3vh, 30px);
     }
 
-    .menu-toggle span {
-        height: 3px;
+    #contact p {
+        font-size: clamp(10px, 1.5vw, 15px);
     }
 
-
-    /* =========================
-       TEXT
-    ========================= */
-
-    .text {
-        width: 100%;
-        max-width: 100%;
-
-        margin-right: 0;
-
-        text-align: left;
+    #contact a {
+        font-size: clamp(10px, 1.5vw, 15px) ;
     }
 
-    .text h1 {
-        font-size: 2rem;
-        line-height: 1.05;
-        margin-bottom: 10px;
+    .contact-inputs {
+        width: 80vw; /* fit smaller screens */
+      }
+
+}
+
+/* 2. MOBILE LAYOUT HORIZONTAL */
+
+@media (max-width: 1022px) and (max-height: 600px) and (orientation: landscape) {
+    /* NAVBAR */
+
+      nav {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        font-size: 10px; /* smaller font for mobile */
+        padding: 2.5px 5px;
     }
 
-    .text h2 {
-        font-size: 1.6rem;
-        line-height: 1.05;
-        margin-bottom: 10px;
+    nav ul li {
+        margin: 5px 10px; /* tighter margins */
     }
 
-    .text p {
-        font-size: 1rem;
-        line-height: 1.45;
-        max-width: 100%;
+    nav ul li:first-child {
+        margin-left: 1px; /* adjust to your liking */
+        margin-right: 8px; /* keeps spacing from next element */
     }
 
-
-    /* =========================
-       BUTTONS
-    ========================= */
-
-    .contact-btn {
-        font-size: 1.2rem;
-
-        padding: 20px;
-
-        border-radius: 25px;
+    nav ul li a {
+        font-size: clamp(10px, 12px, 25px); /* shrink text */
+        white-space: nowrap; /* keep each link on one line */
     }
 
-    .contact-btn--menu {
-        margin-top: 12px;
+    nav ul li a img {
+        height: 7vh; /* smaller logo */
     }
 
+    nav ul .language-select select {
+        font-size: clamp(10px, 12px, 24px);
+        padding: 4px 20px 4px 8px;
+    }
+  
 
-    /* =========================
-       MAIN IMAGES
-    ========================= */
+    /* ABOUT SECTION */
 
-    .image {
-        width: 100%;
+    section.about article .about-content {
+        bottom: 10px;
+        right: 15px;
+        height: calc(90vh - 30px);
     }
 
-    .image figure {
-        max-width: 100%;
+    section.about article h1 {
+      font-size: clamp(15px, 2vw, 25px);
     }
 
-    .image img {
-        width: 85vw;
-        object-fit: contain;
+    h3 {
+      font-size: clamp(8px, 1.3vw, 15px);
     }
 
-
-    /* =========================
-       SUB IMAGE
-    ========================= */
-
-    .sub_image {
-        padding-top: 14px;
+    section.about article .about-content .description {
+      font-size: clamp(10px, 1.5vw, 15px);
+      margin: 5px 0.5vw 0 0.5vw; /* top, right, bottom, left */
     }
 
-    .sub_image figure {
-        padding: 10px 14px;
-        border-radius: 18px;
+    #programs figure img {
+      width: 90%;
+      margin: 5px 0 0 0; /* top, right, bottom, left */
     }
 
-    .sub_image img {
-        width: 75vw;
-        max-width: 400px;
+    /* SERVICE SECTION */
+
+    section.service .text {
+        bottom: 10px;
+        right: 15px;
+        height: calc(90vh - 30px);
     }
 
-
-    /* =========================
-       SPECIFICATION
-    ========================= */
-
-    .specification {
-        margin-top: 14px;
+    section.service .text p {
+        font-size: clamp(11px, 1vw, 18px);
     }
 
-    .specification p {
-        font-size: 0.68rem;
-        line-height: 1.3;
-        border-top: 1px solid #5f8290;
-        color: #5f8290;
+    section.service .text a {
+        font-size: clamp(10px, 0.8vw, 15px);
     }
 
+    /* CONTACT SECTION */
 
-    /* =========================
-       PDF SECTION
-    ========================= */
-
-    .pdfs {
-        width: 100%;
-
-        gap: 10px;
-
-        margin-top: 10px;
+    .profile-picture img {
+      border-radius: 25px;
+      height: 65vh;
+      width: auto;
     }
 
-    .pdf-icon {
-        gap: 10px;
-
-        padding: 12px;
-
-        border-radius: 14px;
+    .download-content a {
+        margin: 1px 0;
+        padding: 2.5px 12px;
     }
 
-    .pdf-icon img {
-        width: 50px;
-        height: 50px;
+    .social-networks img {
+        height: 5vh;
     }
 
-    .pdf-text h3 {
-        font-size: 1rem;
-        margin-bottom: 2px;
+    .contact-left button {
+        padding: 0px 20px;
     }
 
-    .pdf-text p {
-        font-size: 0.75rem;
-        line-height: 1.3;
+    #contact h1 {
+        font-size: clamp(8px, 1.8vw, 18px);
     }
 
-    .pdf-list a {
-        font-size: .8rem;
-        padding: 6px;
-    }
-    /* =========================
-       SIDE MENU
-    ========================= */
-
-    .side-menu {
-        width: 100%;
-        padding-top: 80px;
+    .contact-left-title h2 {
+        font-size: clamp(9px, 1.2vw, 12px);
+        margin-top: 1vh;
     }
 
-    .side-menu li {
-        margin-bottom: 16px;
+    #contact p {
+        font-size: clamp(6px, 1vw, 12px);
     }
 
-    .side-menu a {
-        font-size: 1.5rem;
+    #contact a {
+        font-size: clamp(5px, 1vw, 10px);
     }
 
+    .contact-inputs {
+        font-size: clamp(5px, 1vw, 10px);
+    }
 
-    /* =========================
-       PROYECTOS
-    ========================= */
+}
 
-    .proyectos article {
+/* 3. TABLET LAYOUT VERTICAL */
+
+@media (min-width: 601px) and (max-width: 1023px) and (min-height: 601px) {
+    
+    /* NAVBAR */
+
+      nav {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        font-size: 10px; /* smaller font for mobile */
+        padding: 5px 10px;
+    }
+
+    nav ul li {
+        margin: 5px 10px; /* tighter margins */
+    }
+
+    nav ul li a {
+        font-size: clamp(18px, 22px, 30px); /* shrink text */
+        white-space: nowrap; /* keep each link on one line */
+    }
+
+    nav ul li a img {
+        height: 50px; /* smaller logo */
+    }
+
+    nav ul .language-select select {
+        font-size: clamp(15px, 20px, 25px);
+        padding: 4px 20px 4px 8px;
+    }
+  
+
+    /* ABOUT SECTION */
+
+    section.about article .about-content {
+        bottom: 22.5vh;
+        right: 27.5vw;
+        width: 45vw;
+        height: 45vh;
+    }
+
+    section.about article h1 {
+      font-size: clamp(20px, 3.5vw, 30px);
+    }
+
+    h3 {
+      font-size: clamp(15px, 2vw, 30px);
+      font-weight: 700;
+    }
+
+    section.about article .about-content .description {
+      font-size: clamp(18px, 1.5vw, 25px);
+      margin: 10px 3.125vw 0 3.125vw; /* top, right, bottom, left */
+    }
+
+    #programs figure img {
+      width: 90%;
+      margin: 10px 0 0 0; /* top, right, bottom, left */
+    }
+
+    /* SERVICE SECTION */
+
+    section.service .text {
+        top: calc(10vh + 20px);
+        right: 10px;
+        width: 40vw;
+        height: 35vh;
+    }
+
+    section.service .text p {
+        font-size: clamp(18px, 2vw, 30px);
+    }
+
+    section.service .text a {
+        font-size: clamp(85%, 90%, 100%);
+    }
+
+    /* CONTACT SECTION */
+
+    section.contact article {
+        flex-direction: column; /* stack vertically */
+        height: 100vh; /* let it grow naturally */
+        padding-top: 50px; /* keep space below navbar */
+      }
+
+    section.contact article figure,
+    section.contact .contact-content {
+        width: 100%; /* full width */
+        height: auto; /* adjust height to content */
         justify-content: center;
-        gap: 10px;
-    }
+        text-align: center;
+      }
 
-    .proyectos-carousel {
-        width: 100%;
+    .profile-picture img {
+        width: 20vh;
+        height: 20vh;
+        object-fit: cover;
+       border-radius: 50%;
+      }
 
-        margin-top: 0;
-
-        padding: 10px 50px;
-    }
-
-    .proyecto-card {
-        flex-direction: column-reverse;
-
+    section.contact .contact-content {
         align-items: center;
+      }
 
-        gap: 10px;
-
-        padding: 0;
+    section.contact .contact-data {
+        height: 25vh;
     }
 
-    .cardtext {
-        max-width: 100%;
-        flex: 0;
+    .download-content a {
+        margin: 4px 0;
+        padding: 8px 18px;
     }
 
-    .cardtext h1 {
-        margin-bottom: 6px;
+    section.contact .contact-tools {
+        height: 35vh;
     }
 
-    .cardtext p {
-        font-size: 0.9rem;
-        line-height: 1.4;
-        
-    }
-
-    .cardimage img {
-        width: 30vw;
-    }
-
-    .carousel-btn {
-        width: 30px;
-        height: 30px;
-
-        font-size: 18px;
-    }
-
-
-    /* =========================
-    CONTACT SECTION
-    ========================= */
-
-    .contacto {
-        min-height: 90vh;
-
-        display: flex;
-        flex-direction: column;
-
-        justify-content: space-between;
-    }
-
-    .contacto article {
-        flex: 1;
-
-        margin-top: 0;
-
-        display: flex;
+    .social-networks {
         align-items: center;
         justify-content: center;
-
-        padding:
-            80px
-            7vw
-            40px;
     }
 
-    .contacto .text {
-        max-width: 500px;
+    .social-networks img {
+        height: 3.8vh;
     }
 
-     /* =========================
-       FOOTER
-    ========================= */
-
-    .site-footer {
-        padding: 30px 8vw 30px;
+    .contact-left button {
+        padding: 0px 30px;
     }
 
-    .footer-top {
-        flex-direction: column;
-        gap: 30px;
+    .contact-left-title h2 {
+        font-size: clamp(18px, 3vw, 25px);
     }
 
-    .social-icons {
-        padding: 0;
-        gap: 20px;
+    #contact h1 {
+        font-size: clamp(25px, 3.8vw, 35px);
     }
 
-    .social-icons img {
-        width: 40px;
+    #contact p {
+        font-size: clamp(10px, 1.8vw, 15px);
     }
 
+    #contact a {
+        font-size: clamp(12px, 2vw, 15px) ;
+    }
+
+    .contact-inputs {
+        width: 80vw; /* fit smaller screens */
+      }
+
+}
+
+#modelBrowser{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:900px;
+height: 900px;
+max-width:90vw;
+max-height:60vh;
+background:#111;
+border-radius:15px;
+padding:20px;
+z-index:999;
+display:none;
+overflow-y:auto;
+box-sizing:border-box;
+}
+
+
+#modelSearch{
+width:100%;
+padding:10px;
+margin-bottom:10px;
+background:#222;
+border:none;
+color:white;
+border-radius:8px;
+font-family:monospace;
+}
+
+#modelList{
+list-style:none;
+padding:0;
+margin:0;
+}
+
+#modelList li{
+padding:8px;
+cursor:pointer;
+border-bottom:1px solid #333;
+}
+
+#modelList li:hover{
+background:#333;
+}
+
+#browserHeader{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+color:white;
+font-family: monospace;
+}
+
+#closeBrowser{
+background:none;
+border:none;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+#closeBrowser:hover{
+color:#FCDFA7;
 }

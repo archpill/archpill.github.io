@@ -1,477 +1,382 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const sideMenu = document.querySelector('.side-menu');
-const menuOverlay = document.querySelector('.menu-overlay');
-const menuLinks = document.querySelectorAll('.side-menu a');
+const translations = {
+    en: {
+        
+        navAbout : "Home",
+        navServices: "Services",
+        navContact : "Contact",
+        
+        subtitle1 : "Architect's Portfolio",
+        par1 : "Hello, I am a visual and technical representation designer with a main focus in BIM-based software.",
 
-function openMenu() {
-    sideMenu.classList.add('open');
-    menuToggle.classList.add('open');
-    menuOverlay.classList.add('open');
-}
+        services_modeling_title : "MODELING" ,
+        services_modeling_description : "Architectural 3d modeling based on plans or on-site measurements. I use a wide range of industry-standard software to deliver detailed models.",
+        services_modeling_contact : "Contact me for more information.",
 
-function closeMenu() {
-    sideMenu.classList.remove('open');
-    menuToggle.classList.remove('open');
-    menuOverlay.classList.remove('open');
-}
+        services_render_title : "ARCHVIZ" ,
+        services_render_description : "Bring your architectural ideas to life with realistic renderings. You can choose the look and feel from camera angles to materials. I specialize in both interior and exterior visualizations.",
+        services_render_contact : "Contact me for more information.",
 
-menuToggle.addEventListener('click', () => {
-    if (sideMenu.classList.contains('open')) {
-        closeMenu();
-    } else {
-        openMenu();
+        services_mep_description : "Mechanical, electrical, and plumbing systems modeled in Autodesk Revit, based on architectural drawings and ready for scheduling and quantity takeoff.",
+        services_mep_contact : "Contact me for more information.",
+
+        services_details_title : "DETAILING" ,
+        services_details_description : "Construction-ready documentation of architectural elements and components.",
+        services_details_contact : "Contact me for more information.",
+
+        contact_description : "Bachelor of Architecture from <br> Universidad de Lima.",
+        contact_cv : "Download CV",
+        contact_dossier : "Download Projects Dossier",
+        contact_email_title : "Contact Me",
+
+        contact_email_name : "Your Name",
+        contact_email_email : "Your Email",
+        contact_email_message : "Your Message",
+
+        contact_email_send : "Send",
+
+
+    },
+    es: {
+        
+        navAbout : "Inicio",
+        navServices: "Servicios",
+        navContact : "Contacto",
+
+        subtitle1 : "Portafolio de Arquitecto",
+        par1 : "Hola, soy un diseñador de representaciones visuales y técnicas basadas principalmente en software BIM.",
+
+        services_modeling_title : "MODELADO" ,
+        services_modeling_description : "Levantamiento de modelos arquitectónicos a partir de planos o mediciones en campo. Manejo una amplia gama de software de la industria para producir modelos detallados.",
+        services_modeling_contact : "Contáctame para más información.",
+
+        services_render_title : "RENDERS" ,
+        services_render_description : "Dale vida a tus diseños con renders fotorrealistas. Puedes escoger ángulos de cámara, materiales e iluminación. Me especializo en renderizados interiores y exteriores.",
+        services_render_contact : "Contáctame para más información.",
+
+        services_mep_description : "Sistemas mecánicos, eléctricos y sanitarios modelados en Autodesk Revit, a partir de planos arquitectónicos y listos para metrados y planificación.",
+        services_mep_contact : "Contáctame para más información.",
+
+        services_details_title : "DETALLES" ,
+        services_details_description : "Documentación de elementos y componentes arquitectónicos, lista para obra.",
+        services_details_contact : "Contáctame para más información.",
+
+        contact_description : "Bachiller en Arquitectura por la <br> Universidad de Lima.",
+        contact_cv : "Descargar CV",
+        contact_dossier : "Descargar Dossier de Proyectos",
+        contact_email_title : "Contáctame",
+
+        contact_email_name : "Tu Nombre",
+        contact_email_email : "Tu Correo Electrónico",
+        contact_email_message : "Tu Mensaje",
+
+        contact_email_send : "Enviar",
+
+
     }
-});
-
-// close when clicking overlay
-menuOverlay.addEventListener('click', closeMenu);
-
-// close when clicking a link
-menuLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
-});
-
-const menuClose = document.querySelector('.menu-close');
-menuClose.addEventListener('click', closeMenu);
-
-const contactBtns = document.querySelectorAll('.contact-btn');
-const contactModal = document.querySelector('.contact-modal');
-const contactOverlay = document.querySelector('.contact-overlay');
-const contactClose = document.querySelector('.contact-close');
-
-function openContact() {
-    contactModal.classList.add('open');
 }
 
-function closeContact() {
-    contactModal.classList.remove('open');
+const LanguageSelectop = document.querySelector("select");
+
+let navAbout = document.getElementById("navAbout");
+let navServices = document.getElementById("navServices");
+let navContact = document.getElementById("navContact");
+
+let subtitle1 = document.getElementById("subtitle1");
+let par1 = document.getElementById("par1");
+
+let services_modeling_title = document.getElementById("services_modeling_title");
+let services_modeling_description = document.getElementById("services_modeling_description");
+let services_modeling_contact = document.getElementById("services_modeling_contact");
+
+let services_render_title = document.getElementById("services_render_title");
+let services_render_description = document.getElementById("services_render_description");
+let services_render_contact = document.getElementById("services_render_contact");
+
+let services_mep_description = document.getElementById("services_mep_description");
+let services_mep_contact = document.getElementById("services_mep_contact");
+
+let services_details_title = document.getElementById("services_details_title");
+let services_details_description = document.getElementById("services_details_description");
+let services_details_contact = document.getElementById("services_details_contact");
+
+let contact_description = document.getElementById("contact_description");
+let contact_cv = document.getElementById("contact_cv");
+let contact_dossier = document.getElementById("contact_dossier");
+let contact_email_title = document.getElementById("contact_email_title");
+
+let contact_email_name = document.getElementById("contact_email_name");
+let contact_email_email = document.getElementById("contact_email_email");
+let contact_email_message = document.getElementById("contact_email_message");
+
+let contact_email_send = document.getElementById("contact_email_send");
+
+
+LanguageSelectop.addEventListener("change", (event) => {
+    setLanguage(event.target.value);
+    localStorage.setItem("siteLanguage", event.target.value); // ✅ Save chosen language
+});
+
+// Load saved language on page load
+window.addEventListener("DOMContentLoaded", () => {
+    const savedLang = localStorage.getItem("siteLanguage") || "en"; // Default to "en"
+    LanguageSelectop.value = savedLang; // Make dropdown reflect saved value
+    setLanguage(savedLang);
+});
+
+const setLanguage = (language) => {
+    if(language == "es"){
+
+        navAbout.innerText = translations.es.navAbout;
+        navServices.innerText = translations.es.navServices;
+        navContact.innerText = translations.es.navContact;
+
+        subtitle1.innerText = translations.es.subtitle1;
+        par1.innerText = translations.es.par1;
+
+        services_modeling_title.innerText = translations.es.services_modeling_title;
+        services_modeling_description.innerText = translations.es.services_modeling_description;
+        services_modeling_contact.innerText = translations.es.services_modeling_contact;
+
+        services_render_title.innerText = translations.es.services_render_title;
+        services_render_description.innerText = translations.es.services_render_description;
+        services_render_contact.innerText = translations.es.services_render_contact;
+
+        services_mep_description.innerText = translations.es.services_mep_description;
+        services_mep_contact.innerText = translations.es.services_mep_contact;
+      
+        services_details_title.innerText = translations.es.services_details_title;
+        services_details_description.innerText = translations.es.services_details_description;
+        services_details_contact.innerText = translations.es.services_details_contact;
+
+        contact_description.innerHTML = translations.es.contact_description;
+        contact_cv.innerText = translations.es.contact_cv;
+        contact_dossier.innerText = translations.es.contact_dossier;
+        contact_email_title.innerText = translations.es.contact_email_title;
+
+        contact_email_name.placeholder = translations.es.contact_email_name;
+        contact_email_email.placeholder = translations.es.contact_email_email;
+        contact_email_message.placeholder = translations.es.contact_email_message;
+
+        contact_email_send.innerText = translations.es.contact_email_send;
+
+    }else if(language == "en"){
+
+        navAbout.innerText = translations.en.navAbout;
+        navServices.innerText = translations.en.navServices;
+        navContact.innerText = translations.en.navContact;
+
+        subtitle1.innerText = translations.en.subtitle1;
+        par1.innerText = translations.en.par1;
+
+        services_modeling_title.innerText = translations.en.services_modeling_title;
+        services_modeling_description.innerText = translations.en.services_modeling_description;
+        services_modeling_contact.innerText = translations.en.services_modeling_contact;
+
+        services_render_title.innerText = translations.en.services_render_title;
+        services_render_description.innerText = translations.en.services_render_description;
+        services_render_contact.innerText = translations.en.services_render_contact;
+
+        services_mep_description.innerText = translations.en.services_mep_description;
+        services_mep_contact.innerText = translations.en.services_mep_contact;
+
+        services_details_title.innerText = translations.en.services_details_title;
+        services_details_description.innerText = translations.en.services_details_description;
+
+        contact_description.innerHTML = translations.en.contact_description;
+        contact_cv.innerText = translations.en.contact_cv;
+        contact_dossier.innerText = translations.en.contact_dossier;
+        contact_email_title.innerText = translations.en.contact_email_title;
+
+        contact_email_name.placeholder = translations.en.contact_email_name;
+        contact_email_email.placeholder = translations.en.contact_email_email;
+        contact_email_message.placeholder = translations.en.contact_email_message;
+
+        contact_email_send.innerText = translations.en.contact_email_send;
+
+    }
 }
 
-contactBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        closeMenu();      // close slide menu first
-        openContact();    // then open modal
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const nav = document.querySelector('nav');
+  const contactSection = document.querySelector('#contact');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        nav.classList.add('color-change');
+      } else {
+        nav.classList.remove('color-change');
+      }
     });
+  }, {
+    threshold: 0.5
+  });
+
+  observer.observe(contactSection);
 });
-contactOverlay.addEventListener('click', closeContact);
-contactClose.addEventListener('click', closeContact);
 
+document.addEventListener('DOMContentLoaded', function () {
+  const nav = document.querySelector('select');
+  const contactSection = document.querySelector('#contact');
 
-
-
-// ===============================
-// SCROLL GLIDE
-// ===============================
-
-const SCROLL_DURATION = 700;
-const sections = document.querySelectorAll("section");
-
-let currentSection = 0;
-let isAnimating = false;
-let scrollTimeout = null;
-
-function smoothScrollTo(targetY, duration = SCROLL_DURATION) {
-
-    const startY = window.scrollY;
-    const distance = targetY - startY;
-    let startTime = null;
-
-    function easeInOutCubic(t) {
-        return t < 0.5
-            ? 4 * t * t * t
-            : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    }
-
-    function animation(currentTime) {
-
-        if (!startTime) startTime = currentTime;
-
-        let timeElapsed = currentTime - startTime;
-        let progress = Math.min(timeElapsed / duration, 1);
-        let ease = easeInOutCubic(progress);
-
-        window.scrollTo(0, startY + distance * ease);
-
-        if (timeElapsed < duration) {
-            requestAnimationFrame(animation);
-        } else {
-            isAnimating = false;
-        }
-    }
-
-    requestAnimationFrame(animation);
-}
-
-function goToSection(index) {
-
-    if (index < 0 || index >= sections.length) return;
-    if (isAnimating) return;
-
-    isAnimating = true;
-    currentSection = index;
-
-    const targetY = sections[index].offsetTop;
-
-    smoothScrollTo(targetY, SCROLL_DURATION);
-}
-
-let lastScrollTime = 0;
-const SCROLL_THRESHOLD = 50;   // ignore tiny movements
-const SCROLL_COOLDOWN = 600;   // time between section jumps
-
-window.addEventListener("wheel", function(e) {
-
-    e.preventDefault();
-
-    const now = Date.now();
-
-    // ignore tiny trackpad noise
-    if (Math.abs(e.deltaY) < SCROLL_THRESHOLD) return;
-
-    // ignore rapid-fire events (momentum)
-    if (now - lastScrollTime < SCROLL_COOLDOWN) return;
-
-    // block while animating (your existing logic)
-    if (isAnimating) return;
-
-    lastScrollTime = now;
-
-    if (e.deltaY > 0) {
-        goToSection(currentSection + 1);
-    } else {
-        goToSection(currentSection - 1);
-    }
-
-}, { passive: false });
-
-window.addEventListener("load", () => {
-
-    let scrollPosition = window.scrollY;
-
-    sections.forEach((section, index) => {
-        if (scrollPosition >= section.offsetTop - 10) {
-            currentSection = index;
-        }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        nav.classList.add('color-change');
+      } else {
+        nav.classList.remove('color-change');
+      }
     });
+  }, {
+    threshold: 0.5
+  });
 
+  observer.observe(contactSection);
 });
 
-// ===============================
-// SCROLL GLIDE FOR LINKS
-// ===============================
 
-document.querySelectorAll('a[href^="#"]').forEach(link => {
+document.addEventListener("DOMContentLoaded", function () {
+  const aboutSection = document.querySelector("#about");
+  const contactSection = document.querySelector("#contact");
 
-    link.addEventListener("click", function(e) {
+  const navAbout = document.querySelector('.nav-link[href="#about"]');
+  const navServices = document.querySelector('.nav-link[href="#services"]');
+  const navContact = document.querySelector('.nav-link[href="#contact"]');
 
-        e.preventDefault();
+  function setActive(link) {
+    [navAbout, navServices, navContact].forEach(l => l.classList.remove("active"));
+    link.classList.add("active");
+  }
 
-        const target = document.querySelector(this.getAttribute("href"));
+  function updateActiveLink() {
+    const scrollPos = window.scrollY + window.innerHeight / 2; // middle of viewport
 
-        const index = Array.from(sections).indexOf(target);
-
-        goToSection(index);
-
-    });
-
-});
-// ===============================
-// MOBILE FIXED SECTION SWIPE
-// ===============================
-
-let touchStartY = 0;
-let touchEndY = 0;
-let isTouchMoving = false;
-
-const SWIPE_THRESHOLD = 60;
-
-window.addEventListener("touchstart", (e) => {
-
-    if (isAnimating) return;
-
-    touchStartY = e.touches[0].clientY;
-    isTouchMoving = true;
-
-}, { passive: true });
-
-window.addEventListener("touchmove", (e) => {
-
-    if (!isTouchMoving) return;
-
-    // HARD BLOCK native mobile scrolling
-    e.preventDefault();
-
-}, { passive: false });
-
-window.addEventListener("touchend", (e) => {
-
-    if (!isTouchMoving) return;
-    if (isAnimating) return;
-
-    touchEndY = e.changedTouches[0].clientY;
-
-    const diff = touchStartY - touchEndY;
-
-    isTouchMoving = false;
-
-    // ignore tiny accidental movements
-    if (Math.abs(diff) < SWIPE_THRESHOLD) return;
-
-    // ONE section only
-    if (diff > 0) {
-        goToSection(currentSection + 1);
-    } else {
-        goToSection(currentSection - 1);
-    }
-
-}, { passive: true });
-
-
-// HARD BLOCK native arrow scrolling
-window.addEventListener("keydown", (e) => {
     if (
-        e.key === "ArrowUp" ||
-        e.key === "ArrowDown" ||
-        e.key === "ArrowLeft" ||
-        e.key === "ArrowRight" ||
-        e.key === " "
+      scrollPos >= aboutSection.offsetTop &&
+      scrollPos < aboutSection.offsetTop + aboutSection.offsetHeight
     ) {
-        e.preventDefault();
+      setActive(navAbout);
+    } 
+    else if (
+      scrollPos >= contactSection.offsetTop &&
+      scrollPos < contactSection.offsetTop + contactSection.offsetHeight
+    ) {
+      setActive(navContact);
+    } 
+    else {
+      setActive(navServices);
     }
-}, { passive: false });
+  }
 
+  document.addEventListener("scroll", updateActiveLink);
 
-// ===============================
-// SCROLL GLIDE KEYBOARD (FINAL)
-// ===============================
-
-let lastKeyTime = 0;
-const KEY_COOLDOWN = 500;
-
-window.addEventListener("keydown", (e) => {
-
-    const now = Date.now();
-
-    if (now - lastKeyTime < KEY_COOLDOWN) return;
-    if (isAnimating) return;
-
-    if (sideMenu.classList.contains("open")) return;
-    if (contactModal.classList.contains("open")) return;
-
-    if (e.key === "ArrowDown" || e.key === " ") {
-        lastKeyTime = now;
-        goToSection(currentSection + 1);
-    }
-
-    if (e.key === "ArrowUp") {
-        lastKeyTime = now;
-        goToSection(currentSection - 1);
-    }
-
-});
+  // Run once on page load so About is active immediately
+  updateActiveLink();
+}); 
 
 
 
 
 
 
-// ===============================
-// PROYECTOS CAROUSEL (SINGLE CARD)
-// ===============================
+// MODEL BROWSER
 
-const track = document.querySelector(".carousel-track");
-const cards = document.querySelectorAll(".proyecto-card");
-const prevBtn = document.querySelector(".carousel-btn.prev");
-const nextBtn = document.querySelector(".carousel-btn.next");
+const modelBrowserBtn = document.getElementById("modelBrowserBtn");
+const modelBrowser = document.getElementById("modelBrowser");
+const modelSearch = document.getElementById("modelSearch");
+const modelList = document.getElementById("modelList");
 
-let currentSlide = 0;
-const totalSlides = cards.length;
-updateCarousel();
+/* MANUAL MODEL LIST */
 
-function updateCarousel() {
+const models = [
 
-    cards.forEach((card, index) => {
+{
+name:"DR_Dormitorio",
+file:"models/DR_Dormitorio.glb"
+},
 
-        if (index === currentSlide) {
-            card.classList.add("active");
-        } else {
-            card.classList.remove("active");
-        }
+{
+name:"AR_Minibar",
+file:"models/AR_Minibar.glb"
+},
 
-    });
+{
+name:"AR_Pasadizo",
+file:"models/AR_Pasadizo.glb"
+},
 
-}
+{
+name:"PV_Tocador",
+file:"models/PV_Tocador.glb"
+},
 
-// next
-nextBtn.addEventListener("click", () => {
+];
 
-    currentSlide++;
+/* OPEN BROWSER */
 
-    if (currentSlide >= totalSlides) {
-        currentSlide = 0;
-    }
-
-    updateCarousel();
-
-});
-
-// prev
-prevBtn.addEventListener("click", () => {
-
-    currentSlide--;
-
-    if (currentSlide < 0) {
-        currentSlide = totalSlides - 1;
-    }
-
-    updateCarousel();
-
-});
-
-
-
-
-
-// ===============================
-// PDF MODAL (MULTI CATEGORY)
-// ===============================
-
-// buttons
-const pdfButtons = document.querySelectorAll(".pdf-icon");
-
-// modal elements
-const pdfModal = document.querySelector(".pdf-modal");
-const pdfOverlay = document.querySelector(".pdf-overlay");
-const pdfClose = document.querySelector(".pdf-close");
-const pdfList = document.querySelector(".pdf-list");
-const pdfTitle = document.querySelector(".pdf-title");
-
-// 👇 DEFINE YOUR FILES HERE
-const pdfData = {
-    autor: {
-        title: "Derecho de autor",
-        files: [
-            { name: "Autoedición oportunidades y desafíos.", url: "pdfs/Derecho de autor/01 Autoedición oportunidades y desafíos.pdf" },
-            { name: "Derecho de autor e inteligencia artificial.", url: "pdfs/Derecho de autor/01 Derecho de autor e inteligencia artificial.pdf" },
-            { name: "El derecho de autor de los creadores digitales de contenidos.", url: "pdfs/Derecho de autor/01 El derecho de autor de los creadores digitales de contenidos.pdf" },
-            { name: "El plagio. Uso indebido de los contenidos de otros.", url: "pdfs/Derecho de autor/01 El plagio. Uso indebido de los contenidos de otros.pdf" },
-            { name: "El respeto de la propiedad intelectual. De qué estamos hablando.", url: "pdfs/Derecho de autor/01 El respeto de la propiedad intelectual. De qué estamos hablando.pdf" },
-            { name: "La delgada línea entre similitud y plagio.", url: "pdfs/Derecho de autor/01 La delgada línea entre similitud y plagio.pdf" },
-            { name: "Plagio, malas prácticas y conciencia pública.", url: "pdfs/Derecho de autor/01 Plagio, malas prácticas y conciencia pública.pdf" },
-            { name: "Revistas depredadoras. Otro tentáculo de las malas prácticas.", url: "pdfs/Derecho de autor/01 Revistas depredadoras. Otro tentáculo de las malas prácticas.pdf" },
-        ]
-    },
-    carbono: {
-        title: "Huella de carbono",
-        files: [
-            { name: "Cómo se mide la huella de carbono de un libro.", url: "pdfs/Huella de Carbono/02 Cómo se mide la huella de carbono de un libro.pdf" },
-            { name: "Infografía: Libros y planeta. Cuál es la verdadera huella de carbono.", url: "pdfs/Huella de Carbono/02 Infografia Libros y planeta. Cual es la verdadera huella de carbono.pdf" },
-            { name: "La huella de carbono de las compras públicas de libros del MinCul.", url: "pdfs/Huella de Carbono/02 La huella de carbono de las compras públicas de libros del MinCul.pdf" },
-            { name: "La huella de carbono editorial. Un tema urgente.", url: "pdfs/Huella de Carbono/02 La huella de carbono editorial. Un tema urgente.pdf" },
-        ]
-    },
-    tecnologia: {
-        title: "Tecnología editorial",
-        files: [
-            { name: "Contratos inteligentes y cesión de derechos de autor.", url: "pdfs/Tecnologia editorial/03 Contratos inteligentes y cesión de derechos de autor.pdf" },
-            { name: "El futuro de los tokens no fungibles.", url: "pdfs/Tecnologia editorial/03 El futuro de los tokens no fungibles.pdf" },
-            { name: "Inteligencia artificial. ¿Y el derecho de autor?", url: "pdfs/Tecnologia editorial/03 Inteligencia artificial. Y el derecho de autor.pdf" },
-            { name: "La responsabilidad editorial en la era de la desinformación.", url: "pdfs/Tecnologia editorial/03 La responsabilidad editorial en la era de la desinformación.pdf" },
-            { name: "Tokens no fungibles. Qué son y cuál es su impacto en los derechos de autor.", url: "pdfs/Tecnologia editorial/03 Tokens no fungibles. Qué son y cuál es su impacto en los derechos de autor.pdf" },
-        ]
-    }
+modelBrowserBtn.onclick = (e)=>{
+e.preventDefault();
+modelBrowser.style.display = "block";
+renderList(models);
 };
 
-// open modal
-function openPDFModal(category) {
+/* RENDER MODEL LIST */
 
-    const data = pdfData[category];
-    if (!data) return;
+function renderList(list){
 
-    // set title
-    pdfTitle.textContent = data.title;
+modelList.innerHTML = "";
 
-    // clear previous
-    pdfList.innerHTML = "";
+list.forEach(model=>{
 
-    // add files
-    data.files.forEach(file => {
-        const link = document.createElement("a");
-        link.href = file.url;
-        link.textContent = file.name;
-        link.target = "_blank";
-        pdfList.appendChild(link);
-    });
+const li = document.createElement("li");
+li.textContent = model.name;
 
-    pdfModal.classList.add("open");
-}
+li.onclick = ()=>{
 
-// close modal
-function closePDFModal() {
-    pdfModal.classList.remove("open");
-}
+window.location.href =
+`3dExplorer.html?model=${encodeURIComponent(model.file)}`;
 
-// events
-pdfButtons.forEach(btn => {
-    btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const category = btn.dataset.category;
-        openPDFModal(category);
-    });
+};
+
+modelList.appendChild(li);
+
 });
 
-pdfOverlay.addEventListener("click", closePDFModal);
-pdfClose.addEventListener("click", closePDFModal);
+}
 
+/* SEARCH */
 
+modelSearch.addEventListener("input",()=>{
 
+const query = modelSearch.value.toLowerCase();
 
-// ===============================
-// CONTACT FORM AJAX SUBMIT
-// ===============================
+const filtered = models.filter(m =>
+m.name.toLowerCase().includes(query)
+);
 
-const contactForm = document.getElementById("contact-form");
-const formResult = document.getElementById("form-result");
+renderList(filtered);
 
-contactForm.addEventListener("submit", async function (e) {
+});
 
-    e.preventDefault();
+const closeBrowser = document.getElementById("closeBrowser");
 
-    formResult.textContent = "Enviando mensaje...";
+if(closeBrowser){
+closeBrowser.onclick = ()=>{
+modelBrowser.style.display = "none";
+};
+}
 
-    const formData = new FormData(contactForm);
+window.addEventListener("click",(e)=>{
 
-    try {
-
-        const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            body: formData
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-
-            formResult.textContent = "Mensaje enviado correctamente.";
-
-            contactForm.reset();
-
-            // optional auto-close after 2 sec
-            setTimeout(() => {
-                formResult.textContent = "";
-                closeContact();
-            }, 2000);
-
-        } else {
-
-            formResult.textContent = "Hubo un problema. Intente nuevamente.";
-
-        }
-
-    } catch (error) {
-
-        formResult.textContent = "Error de conexión.";
-
-    }
+if(
+!modelBrowser.contains(e.target) &&
+!modelBrowserBtn.contains(e.target)
+){
+modelBrowser.style.display = "none";
+}
 
 });
